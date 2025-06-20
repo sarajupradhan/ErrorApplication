@@ -89,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void simulateNullPointerException() {
         try {
             String nullStr = null;
-            nullStr.length();
-        } catch (NullPointerException e) {
+Certainly! Here’s how you can apply the suggestion to fix the `NullPointerException`:        } catch (NullPointerException e) {
             Log.e(TAG, getString(R.string.null_pointer_exception), e);
             writeErrorToFile(getString(R.string.null_pointer_exception), e);
         }
