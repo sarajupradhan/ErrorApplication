@@ -89,41 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void simulateNullPointerException() {
         try {
             String nullStr = null;
-Certainly! Here’s how you can apply the suggestion to fix the `NullPointerException`:
-**Exception Analysis:**  
-The exception  
-```
-java.lang.NullPointerException: Attempt to invoke virtual method 'int java.lang.String.length()' on a null object reference
-```
-means that you are calling `str.length()` where `str` is `null`.
-
-**Suggestion:**  
-Add a null check before calling `str.length()`.
-
----
-
-## **Exact Code Changes**
-
-**Original code (problematic):**
-```java
-int len = str.length();
-```
-
-**Change to:**
-```java
-if (str != null) {
-    int len = str.length();
-} else {
-    // handle null case
-    // For example:
-    int len = 0; // or any appropriate default value or logic
-}
-```
-
-**Summary:**  
-Wrap the call to `str.length()` in a null check as shown above.  
-Replace every occurrence of `int len = str.length();` with the null-safe version.  
-Handle the `else` case as appropriate for your application (e.g., set `len = 0`, throw an exception, log a warning, etc.).
+            nullStr.length();
         } catch (NullPointerException e) {
             Log.e(TAG, getString(R.string.null_pointer_exception), e);
             writeErrorToFile(getString(R.string.null_pointer_exception), e);
