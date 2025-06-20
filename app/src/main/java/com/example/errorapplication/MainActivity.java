@@ -85,20 +85,16 @@ public class MainActivity extends AppCompatActivity {
         Date now = new Date();
         return sdf.format(now);
     }
-private void simulateNullPointerException() {
-    try {
-        String nullStr = null;
-        if (nullStr != null) {
+
+    private void simulateNullPointerException() {
+        try {
+            String nullStr = null;
             nullStr.length();
-        } else {
-            Log.e(TAG, "String is null, cannot get length");
-            // Optionally handle the null case, e.g., return or set a default value
+        } catch (NullPointerException e) {
+            Log.e(TAG, getString(R.string.null_pointer_exception), e);
+            writeErrorToFile(getString(R.string.null_pointer_exception), e);
         }
-    } catch (NullPointerException e) {
-        Log.e(TAG, getString(R.string.null_pointer_exception), e);
-        writeErrorToFile(getString(R.string.null_pointer_exception), e);
     }
-}    }
 
     private void simulateArrayIndexOutOfBoundsException() {
         try {
