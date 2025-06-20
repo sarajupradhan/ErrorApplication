@@ -89,72 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void simulateNullPointerException() {
         try {
             String nullStr = null;
-Certainly!  
-**Exception Analysis:**  
-The exception `java.lang.NullPointerException: Attempt to invoke virtual method 'int java.lang.String.length()' on a null object reference` means you are calling `str.length()` when `str` is `null`.
-
-**Suggestion:**  
-Add a null check before calling `str.length()`.
-
----
-
-## **Exact Code Changes**
-
-**Original code (problematic):**
-```java
-int len = str.length();
-```
-
-**Change to:**
-```java
-if (str != null) {
-    int len = str.length();
-} else {
-    // handle null case
-    // For example:
-    int len = 0; // or any appropriate default value or logic
-}
-```
-
-**Summary:**  
-Wrap the `str.length()` call in a null check as shown above.  
-Replace every direct call to `str.length()` with this pattern wherever `str` could be null.
-
-**Original code (problematic):**
-```java
-String str = ...;
-int len = str.length();
-```
-
-**Change 1: Null check before calling `length()`**
-```java
-String str = ...;
-int len;
-if (str != null) {
-    len = str.length();
-} else {
-    // handle null case, for example:
-    len = 0; // or any appropriate default value or error handling
-}
-```
-
-**Change 2: Use `Objects.requireNonNull(str)` to fail fast**
-```java
-import java.util.Objects;
-
-String str = ...;
-Objects.requireNonNull(str, "str must not be null");
-int len = str.length();
-```
-
----
-
-**Summary of exact code changes:**
-
-- Add a null check before calling `str.length()`, or
-- Add `Objects.requireNonNull(str, "str must not be null");` before calling `str.length()`.
-
-**Choose one of the above approaches based on your application's needs.**
+            nullStr.length();
         } catch (NullPointerException e) {
             Log.e(TAG, getString(R.string.null_pointer_exception), e);
             writeErrorToFile(getString(R.string.null_pointer_exception), e);
