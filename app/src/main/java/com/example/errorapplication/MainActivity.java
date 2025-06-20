@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void simulateNullPointerException() {
         try {
             String nullStr = null;
-Certainly!  
+Certainly! Here’s how you can apply the suggestion to fix the `NullPointerException`:
 **Exception Analysis:**  
 The exception  
 ```
