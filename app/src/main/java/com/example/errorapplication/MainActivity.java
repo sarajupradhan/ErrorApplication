@@ -1,7 +1,7 @@
+```java
 package com.example.errorapplication;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,13 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.errorapplication.R;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -128,26 +124,36 @@ public class MainActivity extends AppCompatActivity {
     private void simulateIllegalArgumentException() {
         try {
             int size = -1;
+            // This will throw NegativeArraySizeException before IllegalArgumentException
             int[] invalidArray = new int[size];
-
             if (size < 0) {
                 throw new IllegalArgumentException("Array size must be non-negative");
             }
-        } catch (IllegalArgumentException e) {
+        } catch (NegativeArraySizeException e) {
             Log.e(TAG, getString(R.string.illegal_argument_exception), e);
             writeErrorToFile(getString(R.string.illegal_argument_exception), e);
-        } catch (NegativeArraySizeException e) {
+        } catch (IllegalArgumentException e) {
             Log.e(TAG, getString(R.string.illegal_argument_exception), e);
             writeErrorToFile(getString(R.string.illegal_argument_exception), e);
         }
     }
 
     private void simulateFileNotFoundException() {
+        FileInputStream fis = null;
         try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
+            // Use a file path that is guaranteed not to exist in app's private storage
+            File directory = getFilesDir();
+            File file = new File(directory, "non_existent_file.txt");
+            fis = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             Log.e(TAG, getString(R.string.file_not_found_exception), e);
             writeErrorToFile(getString(R.string.file_not_found_exception), e);
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException ignored) {}
+            }
         }
     }
 
@@ -178,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 try (FileWriter writer = new FileWriter(file, true)) {
                     writer.append(getString(R.string.timestamp)).append(getCurrentTimestamp()).append("\n");
                     writer.append(getString(R.string.error_occurred)).append(errorType).append("\n");
-                    writer.append(getString(R.string.exception_message)).append(e.getMessage()).append("\n");
+                    writer.append(getString(R.string.exception_message)).append(e.getMessage() != null ? e.getMessage() : "null").append("\n");
                     writer.append(getString(R.string.stack_trace)).append(Log.getStackTraceString(e)).append("\n\n");
                     Toast.makeText(this, getString(R.string.error_logged) + errorType, Toast.LENGTH_SHORT).show();
                 } catch (IOException ioException) {
@@ -200,4 +206,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
+```
