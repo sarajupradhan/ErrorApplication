@@ -142,7 +142,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void simulateFileNotFoundException() {
+            File file = new File("non_existent_file.txt");
+            }
+                Log.e(TAG, "File does not exist: " + file.getAbsolutePath());
+            } else {
+                FileInputStream fis = new FileInputStream(file);
+            if (file.exists()) {
         try {
             FileInputStream fis = new FileInputStream("non_existent_file.txt");
         } catch (FileNotFoundException e) {
