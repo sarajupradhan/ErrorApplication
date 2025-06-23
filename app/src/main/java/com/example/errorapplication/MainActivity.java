@@ -140,16 +140,23 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, getString(R.string.illegal_argument_exception), e);
             writeErrorToFile(getString(R.string.illegal_argument_exception), e);
         }
-    }
-
-    private void simulateFileNotFoundException() {
+private void simulateFileNotFoundException() {
+    File file = new File("non_existent_file.txt");
+    if (file.exists()) {
         try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
-        } catch (FileNotFoundException e) {
+            FileInputStream fis = new FileInputStream(file);
+            // Use the FileInputStream as needed
+            fis.close();
+        } catch (IOException e) {
             Log.e(TAG, getString(R.string.file_not_found_exception), e);
             writeErrorToFile(getString(R.string.file_not_found_exception), e);
         }
+    } else {
+        Log.e(TAG, getString(R.string.file_not_found_exception) + ": File does not exist");
+        writeErrorToFile(getString(R.string.file_not_found_exception), 
+            new FileNotFoundException("File does not exist: " + file.getAbsolutePath()));
     }
+}
 
     private void simulateNumberFormatException() {
         try {
