@@ -144,8 +144,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void simulateFileNotFoundException() {
         try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
-        } catch (FileNotFoundException e) {
+public void simulateFileNotFoundException() {
+    try {
+        File file = new File(getFilesDir(), "non_existent_file.txt");
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            // Proceed with file operations
+            fis.close();
+        } else {
+            // Handle missing file: show error, log, or create file as needed
+            Log.e("MainActivity", "File not found: " + file.getAbsolutePath());
+            Toast.makeText(this, "File not found: " + file.getName(), Toast.LENGTH_SHORT).show();
+            // Optionally, create the file or take other action
+        }
+    } catch (IOException e) {
+        // Handle other IO exceptions
+        Log.e("MainActivity", "Error handling file: " + e.getMessage(), e);
+        Toast.makeText(this, "Error handling file: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+}
             Log.e(TAG, getString(R.string.file_not_found_exception), e);
             writeErrorToFile(getString(R.string.file_not_found_exception), e);
         }
@@ -200,4 +217,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
