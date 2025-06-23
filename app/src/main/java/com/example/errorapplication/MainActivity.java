@@ -27,24 +27,24 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        initializeButtons();
-
-        EditText editText = findViewById(R.id.editText);
-        Button submitButton = findViewById(R.id.submitButton);
-
-        submitButton.setOnClickListener(v -> {
-            String enteredText = editText.getText().toString();
-            if (!enteredText.isEmpty()) {
-                writeErrorToFile(enteredText, null);
-            } else {
-                Toast.makeText(this, "Please enter text to log.", Toast.LENGTH_SHORT).show();
-            }
-        });
+private void simulateFileNotFoundException() {
+    File file = new File("non_existent_file.txt");
+    if (file.exists()) {
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            // You can add further processing here if needed
+            fis.close();
+        } catch (IOException e) {
+            Log.e(TAG, getString(R.string.file_not_found_exception), e);
+            writeErrorToFile(getString(R.string.file_not_found_exception), e);
+        }
+    } else {
+        String errorMsg = "File does not exist: " + file.getAbsolutePath();
+        Log.e(TAG, errorMsg);
+        writeErrorToFile(getString(R.string.file_not_found_exception), new FileNotFoundException(errorMsg));
+        // Optionally, you can create the file or notify the user here
     }
+}
 
     private void initializeButtons() {
         Button buttonNullPointer = findViewById(getResources().getIdentifier("button1", "id", getPackageName()));
@@ -200,4 +200,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
