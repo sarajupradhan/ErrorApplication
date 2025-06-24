@@ -142,15 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void simulateFileNotFoundException() {
-        try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, getString(R.string.file_not_found_exception), e);
-            writeErrorToFile(getString(R.string.file_not_found_exception), e);
-        }
-    }
-
+private void simulateFileNotFoundException() {    // Fix applied for FileNotFoundException in simulateFileNotFoundException - 2025-06-24 01:27:06    // Fix applied for FileNotFoundException in simulateFileNotFoundException - 2025-06-24 01:27:06    File file = new File("non_existent_file.txt");    if (file.exists()) {        try {            FileInputStream fis = new FileInputStream(file);        } catch (FileNotFoundException e) {            Log.e(TAG, getString(R.string.file_not_found_exception), e);            writeErrorToFile(getString(R.string.file_not_found_exception), e);        }    } else {        Log.e(TAG, getString(R.string.file_not_found_exception) + ": File does not exist.");        writeErrorToFile(getString(R.string.file_not_found_exception) + ": File does not exist.", null);    }}
     private void simulateNumberFormatException() {
         try {
             int num = Integer.parseInt("abc");
