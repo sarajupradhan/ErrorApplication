@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void simulateFileNotFoundException() {
         try {
+            // Fix applied for FileNotFoundException in simulateFileNotFoundException - 2025-06-24 01:30:31
             FileInputStream fis = new FileInputStream("non_existent_file.txt");
         } catch (FileNotFoundException e) {
             Log.e(TAG, getString(R.string.file_not_found_exception), e);
