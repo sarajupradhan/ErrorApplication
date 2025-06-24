@@ -1,27 +1,3 @@
-package com.example.errorapplication;
-
-import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.errorapplication.R;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.io.IOException;
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -142,12 +118,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // FIXED: Check if file exists before opening, handle gracefully if not
     private void simulateFileNotFoundException() {
-        try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, getString(R.string.file_not_found_exception), e);
-            writeErrorToFile(getString(R.string.file_not_found_exception), e);
+        File file = new File(getFilesDir(), "non_existent_file.txt");
+        if (file.exists()) {
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                // You can read from the file here if needed
+                fis.close();
+            } catch (IOException e) {
+                Log.e(TAG, getString(R.string.file_not_found_exception), e);
+                writeErrorToFile(getString(R.string.file_not_found_exception), e);
+            }
+        } else {
+            // Handle missing file gracefully
+            String message = "File does not exist: " + file.getAbsolutePath();
+            Log.e(TAG, message);
+            writeErrorToFile(getString(R.string.file_not_found_exception), new FileNotFoundException(message));
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -200,4 +188,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
