@@ -152,11 +152,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
+        String input = "abc";
+        if (input == null || input.trim().isEmpty()) {
+            Log.e(TAG, getString(R.string.number_format_exception) + ": Input is empty or null");
+            writeErrorToFile(getString(R.string.number_format_exception) + ": Input is empty or null", null);
+            Toast.makeText(this, getString(R.string.number_format_exception) + ": Input is empty or null", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
-            int num = Integer.parseInt("abc");
+            int num = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            Log.e(TAG, getString(R.string.number_format_exception), e);
-            writeErrorToFile(getString(R.string.number_format_exception), e);
+            Log.e(TAG, getString(R.string.number_format_exception) + ": Invalid input '" + input + "'", e);
+            writeErrorToFile(getString(R.string.number_format_exception) + ": Invalid input '" + input + "'", e);
+            Toast.makeText(this, getString(R.string.number_format_exception) + ": Invalid input '" + input + "'", Toast.LENGTH_SHORT).show();
         }
     }
 
