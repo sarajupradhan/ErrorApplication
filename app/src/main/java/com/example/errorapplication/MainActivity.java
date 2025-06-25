@@ -105,16 +105,17 @@ public class MainActivity extends AppCompatActivity {
             writeErrorToFile(getString(R.string.array_index_out_of_bounds_exception), e);
         }
     }
-
     private void simulateClassCastException() {
-        try {
-            Object i = Integer.valueOf(42);
+        Object i = Integer.valueOf(42);
+        if (i instanceof String) {
             String s = (String) i;
-        } catch (ClassCastException e) {
-            Log.e(TAG, getString(R.string.class_cast_exception), e);
-            writeErrorToFile(getString(R.string.class_cast_exception), e);
+        } else {
+            String errorMsg = getString(R.string.class_cast_exception) + ": Attempted to cast " + i.getClass().getSimpleName() + " to String";
+            Log.e(TAG, errorMsg);
+            writeErrorToFile(errorMsg, new ClassCastException(errorMsg));
         }
     }
+
 
     private void simulateArithmeticException() {
         try {
