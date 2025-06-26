@@ -124,23 +124,26 @@ public class MainActivity extends AppCompatActivity {
             writeErrorToFile(getString(R.string.arithmetic_exception), e);
         }
     }
-
     private void simulateIllegalArgumentException() {
-        try {
-            int size = -1;
-            int[] invalidArray = new int[size];
+        int size = -1;
 
-            if (size < 0) {
-                throw new IllegalArgumentException("Array size must be non-negative");
-            }
-        } catch (IllegalArgumentException e) {
+        if (size < 0) {
+            IllegalArgumentException e = new IllegalArgumentException("Array size must be non-negative: " + size);
             Log.e(TAG, getString(R.string.illegal_argument_exception), e);
             writeErrorToFile(getString(R.string.illegal_argument_exception), e);
+            Toast.makeText(this, "Invalid array size: " + size, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            int[] validArray = new int[size];
         } catch (NegativeArraySizeException e) {
             Log.e(TAG, getString(R.string.illegal_argument_exception), e);
             writeErrorToFile(getString(R.string.illegal_argument_exception), e);
+            Toast.makeText(this, "Negative array size exception occurred.", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void simulateFileNotFoundException() {
         try {
