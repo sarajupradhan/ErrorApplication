@@ -86,9 +86,14 @@ public class MainActivity extends AppCompatActivity {
         return sdf.format(now);
     }
 
+    /**
+     * Demonstrates a NullPointerException for testing error handling.
+     * Do not remove the intentional null dereference.
+     */
     private void simulateNullPointerException() {
         try {
             String nullStr = null;
+            // Intentionally cause a NullPointerException for demonstration purposes.
             nullStr.length();
         } catch (NullPointerException e) {
             Log.e(TAG, getString(R.string.null_pointer_exception), e);
