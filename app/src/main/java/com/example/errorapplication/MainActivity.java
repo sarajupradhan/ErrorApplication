@@ -87,13 +87,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNullPointerException() {
-        try {
-            String nullStr = null;
-            nullStr.length();
-        } catch (NullPointerException e) {
-            Log.e(TAG, getString(R.string.null_pointer_exception), e);
-            writeErrorToFile(getString(R.string.null_pointer_exception), e);
+        String nullStr = null;
+        if (nullStr == null) {
+            Log.e(TAG, getString(R.string.null_pointer_exception) + ": nullStr is null");
+            writeErrorToFile(getString(R.string.null_pointer_exception) + ": nullStr is null", new NullPointerException("nullStr is null"));
+            Toast.makeText(this, getString(R.string.null_pointer_exception) + ": nullStr is null", Toast.LENGTH_SHORT).show();
+            return;
         }
+        // Safe to call length() if not null
+        int len = nullStr.length();
+        Log.d(TAG, "String length: " + len);
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
