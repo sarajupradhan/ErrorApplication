@@ -152,12 +152,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-        try {
+       // try {
             int num = Integer.parseInt("abc");
-        } catch (NumberFormatException e) {
-            Log.e(TAG, getString(R.string.number_format_exception), e);
-            writeErrorToFile(getString(R.string.number_format_exception), e);
-        }
+       // } catch (NumberFormatException e) {
+        //    Log.e(TAG, getString(R.string.number_format_exception), e);
+         //   writeErrorToFile(getString(R.string.number_format_exception), e);
+      //  }
     }
 
     private void simulateIndexOutOfBoundsException() {
