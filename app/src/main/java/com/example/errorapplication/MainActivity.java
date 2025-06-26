@@ -143,11 +143,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateFileNotFoundException() {
-        try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
+        String fileName = "non_existent_file.txt";
+        File file = new File(getFilesDir(), fileName);
+        if (!file.exists()) {
+            Log.w(TAG, "File does not exist: " + file.getAbsolutePath());
+            Toast.makeText(this, getString(R.string.file_not_found_exception), Toast.LENGTH_SHORT).show();
+            writeErrorToFile(getString(R.string.file_not_found_exception) + ": " + file.getAbsolutePath(), new FileNotFoundException(file.getAbsolutePath()));
+            return;
+        }
+        try (FileInputStream fis = new FileInputStream(file)) {
+            // Process the file if needed
         } catch (FileNotFoundException e) {
             Log.e(TAG, getString(R.string.file_not_found_exception), e);
             writeErrorToFile(getString(R.string.file_not_found_exception), e);
+        } catch (IOException e) {
+            Log.e(TAG, "IOException while reading file: " + file.getAbsolutePath(), e);
+            writeErrorToFile("IOException while reading file", e);
         }
     }
 
