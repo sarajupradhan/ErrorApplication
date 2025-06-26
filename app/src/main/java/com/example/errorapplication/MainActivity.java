@@ -115,15 +115,23 @@ public class MainActivity extends AppCompatActivity {
             writeErrorToFile(getString(R.string.class_cast_exception), e);
         }
     }
-
     private void simulateArithmeticException() {
+        int divisor = 0;
+        if (divisor == 0) {
+            String errorMsg = getString(R.string.arithmetic_exception) + ": Division by zero attempted";
+            Log.e(TAG, errorMsg);
+            writeErrorToFile(errorMsg, new ArithmeticException("Division by zero"));
+            Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
-            int result = 10 / 0;
+            int result = 10 / divisor;
         } catch (ArithmeticException e) {
             Log.e(TAG, getString(R.string.arithmetic_exception), e);
             writeErrorToFile(getString(R.string.arithmetic_exception), e);
         }
     }
+
 
     private void simulateIllegalArgumentException() {
         try {
