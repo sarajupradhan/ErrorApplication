@@ -89,7 +89,12 @@ public class MainActivity extends AppCompatActivity {
     private void simulateNullPointerException() {
         try {
             String nullStr = null;
-            nullStr.length();
+            if (nullStr != null) {
+                nullStr.length();
+            } else {
+                Log.w(TAG, "Attempted to call length() on a null String.");
+                writeErrorToFile("Attempted to call length() on a null String.", null);
+            }
         } catch (NullPointerException e) {
             Log.e(TAG, getString(R.string.null_pointer_exception), e);
             writeErrorToFile(getString(R.string.null_pointer_exception), e);
