@@ -87,59 +87,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNullPointerException() {
-        try {
             String nullStr = null;
             nullStr.length();
-        } catch (NullPointerException e) {
-            Log.e(TAG, getString(R.string.null_pointer_exception), e);
-            writeErrorToFile(getString(R.string.null_pointer_exception), e);
-        }
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
-        try {
             int[] array = new int[5];
             int number = array[10];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            Log.e(TAG, getString(R.string.array_index_out_of_bounds_exception), e);
-            writeErrorToFile(getString(R.string.array_index_out_of_bounds_exception), e);
-        }
     }
 
     private void simulateClassCastException() {
-        try {
             Object i = Integer.valueOf(42);
             String s = (String) i;
-        } catch (ClassCastException e) {
-            Log.e(TAG, getString(R.string.class_cast_exception), e);
-            writeErrorToFile(getString(R.string.class_cast_exception), e);
-        }
     }
 
     private void simulateArithmeticException() {
-        try {
             int result = 10 / 0;
-        } catch (ArithmeticException e) {
-            Log.e(TAG, getString(R.string.arithmetic_exception), e);
-            writeErrorToFile(getString(R.string.arithmetic_exception), e);
-        }
     }
 
     private void simulateIllegalArgumentException() {
-        try {
             int size = -1;
             int[] invalidArray = new int[size];
-
             if (size < 0) {
                 throw new IllegalArgumentException("Array size must be non-negative");
             }
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, getString(R.string.illegal_argument_exception), e);
-            writeErrorToFile(getString(R.string.illegal_argument_exception), e);
-        } catch (NegativeArraySizeException e) {
-            Log.e(TAG, getString(R.string.illegal_argument_exception), e);
-            writeErrorToFile(getString(R.string.illegal_argument_exception), e);
-        }
     }
 
     private void simulateFileNotFoundException() {
@@ -152,22 +123,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-        try {
             int num = Integer.parseInt("abc");
-        } catch (NumberFormatException e) {
-            Log.e(TAG, getString(R.string.number_format_exception), e);
-            writeErrorToFile(getString(R.string.number_format_exception), e);
-        }
     }
 
     private void simulateIndexOutOfBoundsException() {
-        try {
             String str = "Hello";
             char ch = str.charAt(10);
-        } catch (IndexOutOfBoundsException e) {
-            Log.e(TAG, getString(R.string.index_out_of_bounds_exception), e);
-            writeErrorToFile(getString(R.string.index_out_of_bounds_exception), e);
-        }
     }
 
     private void writeErrorToFile(String errorType, Exception e) {
