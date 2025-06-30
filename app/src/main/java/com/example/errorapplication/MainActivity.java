@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
         buttonIllegalArgument.setText(R.string.illegal_argument_exception);
         buttonIllegalArgument.setOnClickListener(v -> simulateIllegalArgumentException());
 
-        Button buttonFileNotFound = findViewById(getResources().getIdentifier("button6", "id", getPackageName()));
-        buttonFileNotFound.setText(R.string.file_not_found_exception);
-        buttonFileNotFound.setOnClickListener(v -> simulateFileNotFoundException());
+//        Button buttonFileNotFound = findViewById(getResources().getIdentifier("button6", "id", getPackageName()));
+//        buttonFileNotFound.setText(R.string.file_not_found_exception);
+//        buttonFileNotFound.setOnClickListener(v -> simulateFileNotFoundException());
 
         Button buttonNumberFormat = findViewById(getResources().getIdentifier("button7", "id", getPackageName()));
         buttonNumberFormat.setText(R.string.number_format_exception);
