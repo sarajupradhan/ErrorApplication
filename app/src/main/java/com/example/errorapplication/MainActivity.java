@@ -85,16 +85,25 @@ public class MainActivity extends AppCompatActivity {
         Date now = new Date();
         return sdf.format(now);
     }
-
+    /**
+     * This method intentionally triggers a NullPointerException for demonstration purposes.
+     * Do not use in production code.
+     */
     private void simulateNullPointerException() {
         try {
             String nullStr = null;
-            nullStr.length();
+            // Intentionally cause NullPointerException
+            if (nullStr != null) {
+                nullStr.length();
+            } else {
+                throw new NullPointerException("nullStr is null");
+            }
         } catch (NullPointerException e) {
             Log.e(TAG, getString(R.string.null_pointer_exception), e);
             writeErrorToFile(getString(R.string.null_pointer_exception), e);
         }
     }
+
 
     private void simulateArrayIndexOutOfBoundsException() {
         try {
