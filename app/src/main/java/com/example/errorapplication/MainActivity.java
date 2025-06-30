@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         Date now = new Date();
         return sdf.format(now);
     }
+
     private void simulateNullPointerException() {
         String nullStr = null;
         if (nullStr == null) {
@@ -93,11 +94,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.null_pointer_exception) + ": nullStr is null", Toast.LENGTH_SHORT).show();
             return;
         }
-        // Safe to call length() if nullStr is not null
-        int length = nullStr.length();
-        Log.d(TAG, "Length of nullStr: " + length);
+        // If not null, proceed safely
+        int len = nullStr.length();
+        Log.d(TAG, "String length: " + len);
     }
-
 
     private void simulateArrayIndexOutOfBoundsException() {
         try {
