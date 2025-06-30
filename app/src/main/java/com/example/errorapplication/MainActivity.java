@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.io.IOException;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,8 +88,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNullPointerException() {
-            String nullStr = null;
-            nullStr.length();
+        String nullStr = null;
+        if (nullStr == null) {
+            Log.e("MainActivity", "simulateNullPointerException: nullStr is null");
+            Toast.makeText(this, "Error: nullStr is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        nullStr.length();
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
