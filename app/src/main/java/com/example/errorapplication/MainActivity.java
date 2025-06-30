@@ -127,8 +127,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateIndexOutOfBoundsException() {
-            String str = "Hello";
-            char ch = str.charAt(10);
+        String str = "Hello";
+        int index = 10;
+        if (index < 0 || index >= str.length()) {
+            Log.e("MainActivity", "Index " + index + " is out of bounds for string of length " + str.length());
+            Toast.makeText(this, "Index out of bounds: " + index, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        char ch = str.charAt(index);
     }
 
     private void writeErrorToFile(String errorType, Exception e) {
