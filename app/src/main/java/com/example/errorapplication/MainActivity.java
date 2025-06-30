@@ -130,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
             String str = "Hello";
             char ch = str.charAt(10);
     }
-
     private void writeErrorToFile(String errorType, Exception e) {
         File directory = getExternalFilesDir(null);
         if (directory != null) {
@@ -139,11 +138,14 @@ public class MainActivity extends AppCompatActivity {
                 try (FileWriter writer = new FileWriter(file, true)) {
                     writer.append(getString(R.string.timestamp)).append(getCurrentTimestamp()).append("\n");
                     writer.append(getString(R.string.error_occurred)).append(errorType).append("\n");
-                    writer.append(getString(R.string.exception_message)).append(e.getMessage()).append("\n");
-                    writer.append(getString(R.string.stack_trace)).append(Log.getStackTraceString(e)).append("\n\n");
+                    writer.append(getString(R.string.exception_message))
+                            .append(e.getMessage() != null ? e.getMessage() : "No message").append("\n");
+                    writer.append(getString(R.string.stack_trace))
+                            .append(Log.getStackTraceString(e)).append("\n\n");
                     Toast.makeText(this, getString(R.string.error_logged) + errorType, Toast.LENGTH_SHORT).show();
                 } catch (IOException ioException) {
                     Log.e(TAG, getString(R.string.failed_to_write), ioException);
+                    Toast.makeText(this, getString(R.string.failed_to_write), Toast.LENGTH_SHORT).show();
                 }
             } else {
                 try (FileWriter writer = new FileWriter(file, true)) {
@@ -152,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, getString(R.string.error_logged) + errorType, Toast.LENGTH_SHORT).show();
                 } catch (IOException ex) {
                     Log.e(TAG, getString(R.string.failed_to_write), ex);
+                    Toast.makeText(this, getString(R.string.failed_to_write), Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -160,5 +163,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.failed_to_access_storage), Toast.LENGTH_SHORT).show();
         }
     }
+
 }
 
