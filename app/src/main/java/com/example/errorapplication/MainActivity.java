@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private OnFragmentInteractionListener mListener;
     private String currentState = "default";
 
-    // Define the interface
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(String data);
     }
@@ -41,32 +40,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initializeButtons();
-
-        EditText editText = findViewById(R.id.editText);
-        Button submitButton = findViewById(R.id.submitButton);
-
-        submitButton.setOnClickListener(v -> {
-            String enteredText = editText.getText().toString();
-            if (!enteredText.isEmpty()) {
-                writeErrorToFile(enteredText, null);
-            } else {
-                Toast.makeText(this, "Please enter text to log.", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void initializeButtons() {
-        Button buttonNullPointer = findViewById(getResources().getIdentifier("button1", "id", getPackageName()));
-        buttonNullPointer.setText(R.string.null_pointer_exception);
-        buttonNullPointer.setOnClickListener(v -> simulateNullPointerException());
 
-        Button buttonArrayIndex = findViewById(getResources().getIdentifier("button2", "id", getPackageName()));
-        buttonArrayIndex.setText(R.string.array_index_out_of_bounds_exception);
-        buttonArrayIndex.setOnClickListener(v -> simulateArrayIndexOutOfBoundsException());
+        Button buttonNumberFormat = findViewById(getResources().getIdentifier("button1", "id", getPackageName()));
+        buttonNumberFormat.setText(R.string.number_format_exception);
+        buttonNumberFormat.setOnClickListener(v -> simulateNumberFormatException());
 
-        Button buttonClassCast = findViewById(getResources().getIdentifier("button3", "id", getPackageName()));
+        Button buttonClassCast = findViewById(getResources().getIdentifier("button2", "id", getPackageName()));
         buttonClassCast.setText(R.string.class_cast_exception);
         buttonClassCast.setOnClickListener(v -> simulateClassCastException());
+
+        Button buttonArrayIndex = findViewById(getResources().getIdentifier("button3", "id", getPackageName()));
+        buttonArrayIndex.setText(R.string.array_index_out_of_bounds_exception);
+        buttonArrayIndex.setOnClickListener(v -> simulateArrayIndexOutOfBoundsException());
 
         Button buttonArithmetic = findViewById(getResources().getIdentifier("button4", "id", getPackageName()));
         buttonArithmetic.setText(R.string.arithmetic_exception);
@@ -80,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
 //        buttonFileNotFound.setText(R.string.file_not_found_exception);
 //        buttonFileNotFound.setOnClickListener(v -> simulateFileNotFoundException());
 
-        Button buttonNumberFormat = findViewById(getResources().getIdentifier("button7", "id", getPackageName()));
-        buttonNumberFormat.setText(R.string.number_format_exception);
-        buttonNumberFormat.setOnClickListener(v -> simulateNumberFormatException());
+        Button buttonNullPointer = findViewById(getResources().getIdentifier("button7", "id", getPackageName()));
+        buttonNullPointer.setText(R.string.null_pointer_exception);
+        buttonNullPointer.setOnClickListener(v -> simulateNullPointerException());
 
         Button buttonIndexOutOfBounds = findViewById(getResources().getIdentifier("button8", "id", getPackageName()));
         buttonIndexOutOfBounds.setText(R.string.index_out_of_bounds_exception);

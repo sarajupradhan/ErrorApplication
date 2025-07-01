@@ -1,139 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/app_bar_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="48dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
-    android:background="#f0f0f0">
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#2196f3"
+        app:title="@string/app_name"
+        app:titleTextColor="#FFFFFF"
+        app:contentInsetStartWithNavigation="80dp"
+        />
 
     <!-- Button 1 -->
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="Button 1"
-        android:layout_margin="4dp"
-        android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.45"
-        app:layout_constraintVertical_bias="0.1" /> <!-- Added vertical bias to lower the content -->
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_marginTop="?attr/actionBarSize"
+       android:padding="24dp"
+       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+       >
+       <Button
+           android:id="@+id/button1"
+           android:layout_width="250dp"
+           android:layout_height="60dp"
+           android:text="Button 1"
+           android:layout_margin="4dp"
+           android:backgroundTint="#2196f3"
+           android:textColor="#fff"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintWidth_percent="0.45"
 
-    <!-- Button 2 -->
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="Button 2"
-        android:layout_margin="4dp"
-        android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/button1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.45" />
+           app:layout_constraintVertical_bias="0.1" /> <!-- Added vertical bias to lower the content -->
 
-    <!-- Button 3 -->
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="Button 3"
-        android:layout_margin="4dp"
-        android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/button2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.45" />
+       <!-- Button 2 -->
+       <Button
+           android:id="@+id/button2"
+           android:layout_width="250dp"
+           android:layout_height="60dp"
+           android:text="Button 2"
+           android:layout_margin="4dp"
+           android:backgroundTint="#2196f3"
+           android:textColor="#fff"
+           app:layout_constraintTop_toBottomOf="@id/button1"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
 
-    <!-- Button 4 -->
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="Button 4"
-        android:layout_margin="4dp"
-        android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/button3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.45" />
+           app:layout_constraintWidth_percent="0.45" />
 
-    <!-- Button 5 -->
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="Button 5"
-        android:layout_margin="4dp"
-        android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/button4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.45" />
+       <!-- Button 3 -->
+       <Button
+           android:id="@+id/button3"
+           android:layout_width="250dp"
+           android:layout_height="60dp"
+           android:text="Button 3"
+           android:layout_margin="4dp"
+           android:backgroundTint="#2196f3"
+           android:textColor="#FFFFFF"
+           app:layout_constraintTop_toBottomOf="@id/button2"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintWidth_percent="0.45" />
+
+       <!-- Button 4 -->
+       <Button
+           android:id="@+id/button4"
+           android:layout_width="250dp"
+           android:layout_height="60dp"
+           android:text="Button 4"
+           android:layout_margin="4dp"
+           android:backgroundTint="#2196f3"
+           android:textColor="#FFFFFF"
+           app:layout_constraintTop_toBottomOf="@id/button3"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintWidth_percent="0.45" />
+
+       <!-- Button 5 -->
+       <Button
+           android:id="@+id/button5"
+           android:layout_width="250dp"
+           android:layout_height="60dp"
+           android:text="Button 5"
+           android:layout_margin="4dp"
+           android:backgroundTint="#2196f3"
+           android:textColor="#FFFFFF"
+           app:layout_constraintTop_toBottomOf="@id/button4"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintWidth_percent="0.45" />
 
 
-    <!-- Button 7 -->
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="Button 7"
-        android:layout_margin="4dp"
-        android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/button5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.45" />
+       <!-- Button 7 -->
+       <Button
+           android:id="@+id/button7"
+           android:layout_width="250dp"
+           android:layout_height="60dp"
+           android:text="Button 7"
+           android:layout_margin="4dp"
+           android:backgroundTint="#2196f3"
+           android:textColor="#fff"
+           app:layout_constraintTop_toBottomOf="@id/button5"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintWidth_percent="0.45" />
 
-    <!-- Button 8 -->
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="Button 8"
-        android:layout_margin="4dp"
-        android:backgroundTint="#000000"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/button7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.45" />
-
-    <!-- EditText for user input -->
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter text"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:padding="8dp"
-        android:background="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/button8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Submit Button -->
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#3F51B5"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/editText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+       <!-- Button 8 -->
+       <Button
+           android:id="@+id/button8"
+           android:layout_width="250dp"
+           android:layout_height="60dp"
+           android:text="Button 8"
+           android:layout_margin="4dp"
+           android:backgroundTint="#2196f3"
+           android:textColor="#fff"
+           app:layout_constraintTop_toBottomOf="@id/button7"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintWidth_percent="0.45" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
