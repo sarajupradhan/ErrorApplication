@@ -96,9 +96,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNullPointerException() {
-        String applicationState = getApplicationScreen();
-        String[] state = applicationState.split("\\.");
-        int domain = state[5].length();
+        List<String> applicationStates = getApplicationScreen();
+        String domain = applicationStates.get(4).toString();
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
@@ -200,8 +199,8 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
-    private String getApplicationScreen(){
-        return "dashboard,contacts,history,settings";
+    private List<String> getApplicationScreen(){
+        return List.of("dashboard","contacts","history","settings",null);
     }
 
     private void updateApplicationState(final String currentState){
