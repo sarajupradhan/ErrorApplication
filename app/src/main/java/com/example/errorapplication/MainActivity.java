@@ -88,12 +88,21 @@ public class MainActivity extends AppCompatActivity {
         buttonIndexOutOfBounds.setText(R.string.index_out_of_bounds_exception);
         buttonIndexOutOfBounds.setOnClickListener(v -> simulateIndexOutOfBoundsException());
     }
-
     private String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         Date now = new Date();
-        return sdf.format(now);
+        if (sdf == null || now == null) {
+            Log.e("MainActivity", "SimpleDateFormat or Date is null in getCurrentTimestamp()");
+            return "";
+        }
+        try {
+            return sdf.format(now);
+        } catch (NullPointerException e) {
+            Log.e("MainActivity", "NullPointerException in getCurrentTimestamp()", e);
+            return "";
+        }
     }
+
 
     private void simulateNullPointerException() {
         List<String> applicationStates = getApplicationScreen();
