@@ -140,36 +140,50 @@ public class MainActivity extends AppCompatActivity {
             String contactInfo = getContactInfo();
             char userId = contactInfo.charAt(30);
     }
-
     private void writeErrorToFile(String errorType, Exception e) {
         File directory = getExternalFilesDir(null);
-        if (directory != null) {
-            File file = new File(directory, "error_log.txt");
+        if (directory == null) {
+            Log.e(TAG, getString(R.string.directory_not_available));
+            Toast.makeText(this, getString(R.string.failed_to_access_storage), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!directory.exists()) {
+            boolean dirCreated = directory.mkdirs();
+            if (!dirCreated) {
+                Log.e(TAG, "Failed to create directory for error logs: " + directory.getAbsolutePath());
+                Toast.makeText(this, getString(R.string.failed_to_access_storage), Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        File file = new File(directory, "error_log.txt");
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(file, true);
+            writer.append(getString(R.string.timestamp)).append(getCurrentTimestamp()).append("\n");
+            writer.append(getString(R.string.error_occurred)).append(errorType).append("\n");
             if (e != null) {
-                try (FileWriter writer = new FileWriter(file, true)) {
-                    writer.append(getString(R.string.timestamp)).append(getCurrentTimestamp()).append("\n");
-                    writer.append(getString(R.string.error_occurred)).append(errorType).append("\n");
-                    writer.append(getString(R.string.exception_message)).append(e.getMessage()).append("\n");
-                    writer.append(getString(R.string.stack_trace)).append(Log.getStackTraceString(e)).append("\n\n");
-                    Toast.makeText(this, getString(R.string.error_logged) + errorType, Toast.LENGTH_SHORT).show();
-                } catch (IOException ioException) {
-                    Log.e(TAG, getString(R.string.failed_to_write), ioException);
-                }
+                writer.append(getString(R.string.exception_message)).append(e.getMessage() != null ? e.getMessage() : "null").append("\n");
+                writer.append(getString(R.string.stack_trace)).append(Log.getStackTraceString(e)).append("\n\n");
             } else {
-                try (FileWriter writer = new FileWriter(file, true)) {
-                    writer.append(getString(R.string.timestamp)).append(getCurrentTimestamp()).append("\n");
-                    writer.append(getString(R.string.error_occurred)).append(errorType).append("\n\n\n");
-                    Toast.makeText(this, getString(R.string.error_logged) + errorType, Toast.LENGTH_SHORT).show();
-                } catch (IOException ex) {
-                    Log.e(TAG, getString(R.string.failed_to_write), ex);
+                writer.append("\n\n");
+            }
+            Toast.makeText(this, getString(R.string.error_logged) + errorType, Toast.LENGTH_SHORT).show();
+        } catch (IOException ioException) {
+            Log.e(TAG, getString(R.string.failed_to_write) + " " + file.getAbsolutePath(), ioException);
+            Toast.makeText(this, getString(R.string.failed_to_write), Toast.LENGTH_SHORT).show();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException closeEx) {
+                    Log.e(TAG, "Failed to close FileWriter", closeEx);
                 }
             }
         }
-        else {
-            Log.e(TAG, getString(R.string.directory_not_available));
-            Toast.makeText(this, getString(R.string.failed_to_access_storage), Toast.LENGTH_SHORT).show();
-        }
     }
+
 
     private List<String> getStores(){
         return List.of("Store1", "Store2");
