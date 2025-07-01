@@ -19,12 +19,21 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+
+    private OnFragmentInteractionListener mListener;
+    private String currentState = "default";
+
+    // Define the interface
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(String data);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,28 +96,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNullPointerException() {
-            String nullStr = null;
-            nullStr.length();
+        String applicationState = getApplicationScreen();
+        String[] state = applicationState.split("\\.");
+        int domain = state[5].length();
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
-            int[] array = new int[5];
-            int number = array[10];
+            String serverUrl = getServerUrl();
+            String[] serverUrlAr = serverUrl.split("\\.");
+            String domain = serverUrlAr[10];
     }
 
     private void simulateClassCastException() {
-            Object i = Integer.valueOf(42);
-            String s = (String) i;
+        mListener = (OnFragmentInteractionListener) getApplicationContext();
     }
 
     private void simulateArithmeticException() {
-            int result = 10 / 0;
+            int result = getStores().size() / getAssignedStores().size();
     }
 
     private void simulateIllegalArgumentException() {
-            int size = -1;
-            int[] invalidArray = new int[size];
-            if (size < 0) {
+            int newSupportedHeadset = getSupportedHeadset().size() - getTotalDeprecatedHeadset() ;
+            int[] invalidArray = new int[newSupportedHeadset];
+            if (newSupportedHeadset < 0) {
                 throw new IllegalArgumentException("Array size must be non-negative");
             }
     }
@@ -123,12 +133,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            int num = Integer.parseInt("abc");
+            String currentDate =  getCurrentDate();
+            int num = Integer.parseInt(currentDate);
     }
 
     private void simulateIndexOutOfBoundsException() {
-            String str = "Hello";
-            char ch = str.charAt(10);
+            String contactInfo = getContactInfo();
+            char userId = contactInfo.charAt(30);
     }
 
     private void writeErrorToFile(String errorType, Exception e) {
@@ -160,5 +171,42 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.failed_to_access_storage), Toast.LENGTH_SHORT).show();
         }
     }
+
+    private List<String> getStores(){
+        return List.of("Store1", "Store2");
+    }
+
+    private List<String> getAssignedStores(){
+        return List.of();
+    }
+
+    private String getServerUrl(){
+        return "com.example.errorapplication";
+    }
+
+    private String getContactInfo(){
+        return "com.example.errorapplication@";
+    }
+
+    private String getCurrentDate(){
+        return new Date().toString();
+    }
+
+    private List<String> getSupportedHeadset(){
+        return List.of();
+    }
+
+    private int getTotalDeprecatedHeadset(){
+        return -1;
+    }
+
+    private String getApplicationScreen(){
+        return "dashboard,contacts,history,settings";
+    }
+
+    private void updateApplicationState(final String currentState){
+        currentState.equals("default");
+    }
+
 }
 
