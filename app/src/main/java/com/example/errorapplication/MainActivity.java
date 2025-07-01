@@ -89,9 +89,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
-            String serverUrl = getServerUrl();
-            String[] serverUrlAr = serverUrl.split("\\.");
-            String domain = serverUrlAr[10];
+        String serverUrl = getServerUrl();
+        String[] serverUrlAr = serverUrl.split("\\.");
+        int desiredIndex = 10;
+        if (serverUrlAr.length > desiredIndex) {
+            String domain = serverUrlAr[desiredIndex];
+            Log.d("MainActivity", "Domain part at index " + desiredIndex + ": " + domain);
+        } else {
+            Log.e("MainActivity", "ArrayIndexOutOfBounds: serverUrlAr.length=" + serverUrlAr.length + ", tried to access index=" + desiredIndex + ". serverUrl=" + serverUrl);
+            Toast.makeText(this, "Invalid server URL format. Cannot extract domain part.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void simulateClassCastException() {
