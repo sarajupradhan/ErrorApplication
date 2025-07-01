@@ -89,9 +89,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
-            String serverUrl = getServerUrl();
-            String[] serverUrlAr = serverUrl.split("\\.");
-            String domain = serverUrlAr[10];
+        String serverUrl = getServerUrl();
+        if (serverUrl == null) {
+            Log.e("MainActivity", "Server URL is null in simulateArrayIndexOutOfBoundsException");
+            Toast.makeText(this, "Server URL is not available.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String[] serverUrlAr = serverUrl.split("\\.");
+        if (serverUrlAr.length <= 10) {
+            Log.e("MainActivity", "Server URL does not have enough segments: " + serverUrl);
+            Toast.makeText(this, "Server URL format is invalid.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String domain = serverUrlAr[10];
     }
 
     private void simulateClassCastException() {
