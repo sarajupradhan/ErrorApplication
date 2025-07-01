@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void simulateNullPointerException() {
         List<String> applicationStates = getApplicationScreen();
-        String domain = applicationStates.get(4).toString();
+        String domain = applicationStates.get(0);
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
@@ -196,11 +196,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int getTotalDeprecatedHeadset(){
-        return -1;
+        return 1;
     }
 
     private List<String> getApplicationScreen(){
-        return List.of("dashboard","contacts","history","settings",null);
+        return null;
     }
 
     private void updateApplicationState(final String currentState){
