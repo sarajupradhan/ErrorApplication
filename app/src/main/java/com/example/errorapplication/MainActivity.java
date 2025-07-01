@@ -200,7 +200,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<String> getApplicationScreen(){
-        return List.of("dashboard","contacts","history","settings",null);
+        // Remove null values to prevent NullPointerException
+        return List.of("dashboard","contacts","history","settings");
     }
 
     private void updateApplicationState(final String currentState){
