@@ -103,11 +103,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateIllegalArgumentException() {
-            int newSupportedHeadset = getSupportedHeadset().size() - getTotalDeprecatedHeadset() ;
-            int[] invalidArray = new int[newSupportedHeadset];
-            if (newSupportedHeadset < 0) {
-                throw new IllegalArgumentException("Array size must be non-negative");
-            }
+        List<?> supportedHeadset = getSupportedHeadset();
+        int totalDeprecatedHeadset = getTotalDeprecatedHeadset();
+
+        if (supportedHeadset == null) {
+            Log.e("MainActivity", "getSupportedHeadset() returned null in simulateIllegalArgumentException");
+            Toast.makeText(this, "Internal error: Supported headset list is unavailable.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int newSupportedHeadset = supportedHeadset.size() - totalDeprecatedHeadset;
+
+        if (newSupportedHeadset < 0) {
+            Log.e("MainActivity", "Calculated array size is negative: " + newSupportedHeadset);
+            throw new IllegalArgumentException("Array size must be non-negative");
+        }
+
+        int[] invalidArray = new int[newSupportedHeadset];
+        // Additional logic can be added here as needed
     }
 
     private void simulateFileNotFoundException() {
