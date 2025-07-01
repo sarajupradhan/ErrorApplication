@@ -54,40 +54,75 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void initializeButtons() {
         Button buttonNullPointer = findViewById(getResources().getIdentifier("button1", "id", getPackageName()));
-        buttonNullPointer.setText(R.string.null_pointer_exception);
-        buttonNullPointer.setOnClickListener(v -> simulateNullPointerException());
+        if (buttonNullPointer != null) {
+            buttonNullPointer.setText(R.string.null_pointer_exception);
+            buttonNullPointer.setOnClickListener(v -> {
+                try {
+                    simulateNullPointerException();
+                } catch (NullPointerException e) {
+                    Log.e("MainActivity", "NullPointerException in simulateNullPointerException", e);
+                    Toast.makeText(this, "A null pointer exception occurred.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Log.e("MainActivity", "buttonNullPointer not found in layout");
+        }
 
         Button buttonArrayIndex = findViewById(getResources().getIdentifier("button2", "id", getPackageName()));
-        buttonArrayIndex.setText(R.string.array_index_out_of_bounds_exception);
-        buttonArrayIndex.setOnClickListener(v -> simulateArrayIndexOutOfBoundsException());
+        if (buttonArrayIndex != null) {
+            buttonArrayIndex.setText(R.string.array_index_out_of_bounds_exception);
+            buttonArrayIndex.setOnClickListener(v -> simulateArrayIndexOutOfBoundsException());
+        } else {
+            Log.e("MainActivity", "buttonArrayIndex not found in layout");
+        }
 
         Button buttonClassCast = findViewById(getResources().getIdentifier("button3", "id", getPackageName()));
-        buttonClassCast.setText(R.string.class_cast_exception);
-        buttonClassCast.setOnClickListener(v -> simulateClassCastException());
+        if (buttonClassCast != null) {
+            buttonClassCast.setText(R.string.class_cast_exception);
+            buttonClassCast.setOnClickListener(v -> simulateClassCastException());
+        } else {
+            Log.e("MainActivity", "buttonClassCast not found in layout");
+        }
 
         Button buttonArithmetic = findViewById(getResources().getIdentifier("button4", "id", getPackageName()));
-        buttonArithmetic.setText(R.string.arithmetic_exception);
-        buttonArithmetic.setOnClickListener(v -> simulateArithmeticException());
+        if (buttonArithmetic != null) {
+            buttonArithmetic.setText(R.string.arithmetic_exception);
+            buttonArithmetic.setOnClickListener(v -> simulateArithmeticException());
+        } else {
+            Log.e("MainActivity", "buttonArithmetic not found in layout");
+        }
 
         Button buttonIllegalArgument = findViewById(getResources().getIdentifier("button5", "id", getPackageName()));
-        buttonIllegalArgument.setText(R.string.illegal_argument_exception);
-        buttonIllegalArgument.setOnClickListener(v -> simulateIllegalArgumentException());
+        if (buttonIllegalArgument != null) {
+            buttonIllegalArgument.setText(R.string.illegal_argument_exception);
+            buttonIllegalArgument.setOnClickListener(v -> simulateIllegalArgumentException());
+        } else {
+            Log.e("MainActivity", "buttonIllegalArgument not found in layout");
+        }
 
 //        Button buttonFileNotFound = findViewById(getResources().getIdentifier("button6", "id", getPackageName()));
 //        buttonFileNotFound.setText(R.string.file_not_found_exception);
 //        buttonFileNotFound.setOnClickListener(v -> simulateFileNotFoundException());
 
         Button buttonNumberFormat = findViewById(getResources().getIdentifier("button7", "id", getPackageName()));
-        buttonNumberFormat.setText(R.string.number_format_exception);
-        buttonNumberFormat.setOnClickListener(v -> simulateNumberFormatException());
+        if (buttonNumberFormat != null) {
+            buttonNumberFormat.setText(R.string.number_format_exception);
+            buttonNumberFormat.setOnClickListener(v -> simulateNumberFormatException());
+        } else {
+            Log.e("MainActivity", "buttonNumberFormat not found in layout");
+        }
 
         Button buttonIndexOutOfBounds = findViewById(getResources().getIdentifier("button8", "id", getPackageName()));
-        buttonIndexOutOfBounds.setText(R.string.index_out_of_bounds_exception);
-        buttonIndexOutOfBounds.setOnClickListener(v -> simulateIndexOutOfBoundsException());
+        if (buttonIndexOutOfBounds != null) {
+            buttonIndexOutOfBounds.setText(R.string.index_out_of_bounds_exception);
+            buttonIndexOutOfBounds.setOnClickListener(v -> simulateIndexOutOfBoundsException());
+        } else {
+            Log.e("MainActivity", "buttonIndexOutOfBounds not found in layout");
+        }
     }
+
 
     private String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
