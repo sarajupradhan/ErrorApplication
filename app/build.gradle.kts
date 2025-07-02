@@ -25,6 +25,25 @@ android {
             )
         }
     }
+
+    applicationVariants.all {
+        this.outputs
+            .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
+            .forEach { output ->
+                val variant = this.buildType.name
+                val flavor = this.flavorName
+                val appName = this.applicationId.substringAfterLast('.').replaceFirstChar { it.uppercase() }
+                var apkName = if (flavor.isNotEmpty()) {
+                    "${appName}_${flavor[0].uppercase()}${flavor.substring(1)}_${this.versionName}"
+                } else {
+                    "${appName}_${this.versionName}"
+                }
+                //if (variant.isNotEmpty()) apkName += "_$variant"
+                apkName += ".apk"
+                println("ApkName=$apkName $variant")
+                output.outputFileName = apkName
+            }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
