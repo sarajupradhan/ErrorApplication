@@ -95,7 +95,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateClassCastException() {
-        mListener = (OnFragmentInteractionListener) getApplicationContext();
+        if (this instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) this;
+        } else {
+            Log.e("MainActivity", "Activity does not implement OnFragmentInteractionListener");
+            Toast.makeText(this, "Error: Activity must implement OnFragmentInteractionListener", Toast.LENGTH_SHORT).show();
+            mListener = null;
+        }
     }
 
     private void simulateArithmeticException() {
