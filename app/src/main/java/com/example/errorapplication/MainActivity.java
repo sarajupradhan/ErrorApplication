@@ -120,8 +120,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
+            // Try to parse as integer, but first validate input
+            if (currentDate == null || !currentDate.matches("-?\\d+")) {
+                Log.e("MainActivity", "Invalid input for Integer.parseInt: " + currentDate);
+                Toast.makeText(this, "Current date is not a valid number: " + currentDate, Toast.LENGTH_LONG).show();
+                return;
+            }
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "NumberFormatException while parsing date string: " + currentDate, e);
+            Toast.makeText(this, "Error: Cannot convert date to number.", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
