@@ -120,8 +120,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
+            // Validate if currentDate is a valid integer string
             int num = Integer.parseInt(currentDate);
+            Log.d("MainActivity", "Parsed integer: " + num);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from date string: " + currentDate, e);
+            Toast.makeText(this, "Invalid input: Cannot parse date as integer.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
