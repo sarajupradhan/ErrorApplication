@@ -82,11 +82,16 @@ public class MainActivity extends AppCompatActivity {
         Date now = new Date();
         return sdf.format(now);
     }
-
     private void simulateNullPointerException() {
         List<String> applicationStates = getApplicationScreen();
+        if (applicationStates == null || applicationStates.isEmpty()) {
+            Log.e("MainActivity", "simulateNullPointerException: applicationStates is null or empty");
+            Toast.makeText(this, "Application state is unavailable.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String domain = applicationStates.get(0);
     }
+
 
     private void simulateArrayIndexOutOfBoundsException() {
             String serverUrl = getServerUrl();
