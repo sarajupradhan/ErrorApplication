@@ -103,11 +103,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateIllegalArgumentException() {
-            int newSupportedHeadset = getSupportedHeadset().size() - getTotalDeprecatedHeadset() ;
-            int[] invalidArray = new int[newSupportedHeadset];
-            if (newSupportedHeadset < 0) {
-                throw new IllegalArgumentException("Array size must be non-negative");
-            }
+        int newSupportedHeadset = getSupportedHeadset().size() - getTotalDeprecatedHeadset();
+        if (newSupportedHeadset < 0) {
+            Log.e("MainActivity", "Array size must be non-negative. Calculated size: " + newSupportedHeadset);
+            Toast.makeText(this, "Error: Array size must be non-negative", Toast.LENGTH_SHORT).show();
+            throw new IllegalArgumentException("Array size must be non-negative");
+        }
+        int[] invalidArray = new int[newSupportedHeadset];
+        // Use invalidArray as needed
     }
 
     private void simulateFileNotFoundException() {
