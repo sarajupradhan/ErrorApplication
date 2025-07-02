@@ -125,8 +125,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateIndexOutOfBoundsException() {
-            String contactInfo = getContactInfo();
-            char userId = contactInfo.charAt(30);
+        String contactInfo = getContactInfo();
+        int index = 30;
+        if (contactInfo == null) {
+            Log.e("MainActivity", "Contact info is null");
+            Toast.makeText(this, "Contact info is not available.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (index < 0 || index >= contactInfo.length()) {
+            Log.e("MainActivity", "Index " + index + " is out of bounds for contactInfo of length " + contactInfo.length());
+            Toast.makeText(this, "Invalid index for contact info.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        char userId = contactInfo.charAt(index);
     }
 
     private void writeErrorToFile(String errorType, Exception e) {
