@@ -1,15 +1,31 @@
 package com.example.errorapplication;
 
+import android.Manifest;
+import android.bluetooth.BluetoothA2dp;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.errorapplication.R;
+import com.example.errorapplication.error.bluetooth.BTHeadSetMgr;
+import com.example.errorapplication.error.bluetooth.spp.SPPHeadSetMgr;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,7 +39,23 @@ import java.util.Locale;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            Log.i(TAG, "BTSupport handler.removeMessages");
+            switch (intent.getAction()) {
+                case BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED:
+                    int connectionState = intent.getExtras().getInt(BluetoothAdapter.EXTRA_CONNECTION_STATE);
+                    Log.i(TAG, "BTSupport Bt ACTION_CONNECTION_STATE_CHANGED "+connectionState);
+                    if (connectionState == BluetoothAdapter.STATE_CONNECTED) {
+                        Log.i(TAG, "BTSupport Bt BluetoothAdapter.STATE_CONNECTED bluetoothConnected ");
+                        BTHeadSetMgr.getInstance(MainActivity.this,null);
+                    }
+                    break;
+            }
+        }
+    };
     private static final String TAG = "MainActivity";
 
     @Override
@@ -44,7 +76,43 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please enter text to log.", Toast.LENGTH_SHORT).show();
             }
         });
+        checkAndStartService(true);
     }
+
+    public void checkAndStartService(boolean isForceCheckBluetooth) {
+        if(isNecessaryPermissionGiven() ){
+            IntentFilter iFilter = new IntentFilter();
+            iFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+            iFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+            iFilter.addAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                registerReceiver(mReceiver, iFilter,RECEIVER_EXPORTED);
+            }
+            Log.d(TAG,"BTSupport : registerBtEvent");
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 123){
+            checkAndStartService(true);
+        }
+    }
+
+    public boolean isNecessaryPermissionGiven() {
+
+        boolean isA12PermissionGiven = true;
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+            if(checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED){
+                isA12PermissionGiven = false;
+            }
+        }
+
+        return   isA12PermissionGiven;
+    }
+
+
 
     private void initializeButtons() {
         Button buttonNullPointer = findViewById(getResources().getIdentifier("button1", "id", getPackageName()));
