@@ -1,5 +1,6 @@
 package com.example.errorapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -75,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
         Button buttonIndexOutOfBounds = findViewById(getResources().getIdentifier("button8", "id", getPackageName()));
         buttonIndexOutOfBounds.setText(R.string.index_out_of_bounds_exception);
         buttonIndexOutOfBounds.setOnClickListener(v -> simulateIndexOutOfBoundsException());
+
+        findViewById(getResources().getIdentifier("button9", "id", getPackageName()))
+                .setOnClickListener(v -> {
+                    Intent intent  = new Intent(MainActivity.this, MainActivity2.class);
+                  startActivity(intent);
+                });;
+
     }
 
     private String getCurrentTimestamp() {
@@ -87,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         List<String> applicationStates = getApplicationScreen();
         String domain = applicationStates.get(0);
     }
-
     private void simulateArrayIndexOutOfBoundsException() {
             String serverUrl = getServerUrl();
             String[] serverUrlAr = serverUrl.split("\\.");
