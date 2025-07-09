@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.List;
+import android.util.Log;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -24,9 +25,13 @@ public class MainActivity2 extends AppCompatActivity {
         buttonNullPointer.setOnClickListener(v -> simulateNullPointerException());
 
     }
-
     private void simulateNullPointerException() {
         List<String> applicationStates = getApplicationScreen();
+        if (applicationStates == null || applicationStates.isEmpty() || applicationStates.get(0) == null) {
+            Log.e("MainActivity2", "applicationStates is null, empty, or first element is null");
+            // Handle the error appropriately, e.g., show a message or return early
+            return;
+        }
         String domain = applicationStates.get(0);
     }
 

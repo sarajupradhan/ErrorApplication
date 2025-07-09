@@ -81,8 +81,13 @@ public class MainActivity extends AppCompatActivity {
                 .setOnClickListener(v -> {
                     Intent intent  = new Intent(MainActivity.this, MainActivity2.class);
                   startActivity(intent);
-                });;
+                });
 
+        findViewById(getResources().getIdentifier("button10", "id", getPackageName()))
+                .setOnClickListener(v -> {
+                    Intent intent  = new Intent(MainActivity.this, com.example.errorapplication.ui.MainActivity.class);
+                    startActivity(intent);
+                });;
     }
 
     private String getCurrentTimestamp() {
