@@ -107,7 +107,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateClassCastException() {
-        mListener = (OnFragmentInteractionListener) getApplicationContext();
+        if (getApplicationContext() instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) getApplicationContext();
+        } else {
+            Log.e("MainActivity", "ApplicationContext does not implement OnFragmentInteractionListener");
+            Toast.makeText(this, "Internal error: Listener not available", Toast.LENGTH_SHORT).show();
+            mListener = null;
+        }
     }
 
     private void simulateArithmeticException() {
@@ -115,11 +121,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateIllegalArgumentException() {
-            int newSupportedHeadset = getSupportedHeadset().size() - getTotalDeprecatedHeadset() ;
-            int[] invalidArray = new int[newSupportedHeadset];
-            if (newSupportedHeadset < 0) {
-                throw new IllegalArgumentException("Array size must be non-negative");
-            }
+        int newSupportedHeadset = getSupportedHeadset().size() - getTotalDeprecatedHeadset();
+        if (newSupportedHeadset < 0) {
+            Log.e("MainActivity", "Attempted to create array with negative size: " + newSupportedHeadset);
+            Toast.makeText(this, "Error: Array size must be non-negative", Toast.LENGTH_SHORT).show();
+            throw new IllegalArgumentException("Array size must be non-negative: " + newSupportedHeadset);
+        }
+        int[] invalidArray = new int[newSupportedHeadset];
+        // Use invalidArray as needed
     }
 
     private void simulateFileNotFoundException() {
@@ -132,8 +141,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
             int num = Integer.parseInt(currentDate);
+            // Use num as needed
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse currentDate: " + currentDate, e);
+            Toast.makeText(this, "Invalid number format: " + currentDate, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
