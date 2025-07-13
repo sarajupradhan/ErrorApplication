@@ -50,10 +50,7 @@ public class TaskTrackerActivity extends AppCompatActivity {
         api = retrofit.create(TaskTrackerApi.class);
 
         btnFetch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String storename = etStoreName.getText().toString().trim();
-                // assignedTo is present in UI but not used in API as per requirements
+    private void fetchTasks(String storename) {        tvResult.setText("Loading...");        Call<JsonArray> call = api.getTasks(                "TaskTracker_Automation",                "TaskTracker_Automation",                storename        );        call.enqueue(new Callback<JsonArray>() {            @Override            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {                if (response.isSuccessful() && response.body() != null) {                    tvResult.setText(response.body().toString());                } else {                    String errorMsg = "Error: " + response.code() + " " + response.message();                    try {                        errorMsg += "\n" + response.errorBody().string();                    } catch (Exception ignored) {}                    tvResult.setText(errorMsg);                }            }            @Override            public void onFailure(Call<JsonArray> call, Throwable t) {                Log.e("TaskTrackerActivity","onFailure",t);                tvResult.setText("Failed: " + t.getMessage());            }        });    }                // assignedTo is present in UI but not used in API as per requirements
                 if (TextUtils.isEmpty(storename)) {
                     etStoreName.setError("Enter storename");
                     return;
