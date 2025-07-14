@@ -63,16 +63,16 @@ public class TaskTrackerActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchTasks(String storename) {
+        private void fetchTasks(String storename) {
         tvResult.setText("Loading...");
-        Call<JsonObject> call = api.getTasks(
+        Call<JsonArray> call = api.getTasks(
                 "TaskTracker_Automation",
                 "TaskTracker_Automation",
                 storename
         );
-        call.enqueue(new Callback<JsonObject>() {
+        call.enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     tvResult.setText(response.body().toString());
                 } else {
@@ -85,7 +85,7 @@ public class TaskTrackerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<JsonArray> call, Throwable t) {
                 Log.e("TaskTrackerActivity","onFailure",t);
                 tvResult.setText("Failed: " + t.getMessage());
             }
