@@ -62,33 +62,4 @@ public class TaskTrackerActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void fetchTasks(String storename) {
-        tvResult.setText("Loading...");
-        Call<JsonObject> call = api.getTasks(
-                "TaskTracker_Automation",
-                "TaskTracker_Automation",
-                storename
-        );
-        call.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    tvResult.setText(response.body().toString());
-                } else {
-                    String errorMsg = "Error: " + response.code() + " " + response.message();
-                    try {
-                        errorMsg += "\n" + response.errorBody().string();
-                    } catch (Exception ignored) {}
-                    tvResult.setText(errorMsg);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.e("TaskTrackerActivity","onFailure",t);
-                tvResult.setText("Failed: " + t.getMessage());
-            }
-        });
-    }
-}
+    private void fetchTasks(String storename) {        tvResult.setText("Loading...");        Call<JsonArray> call = api.getTasks(                "TaskTracker_Automation",                "TaskTracker_Automation",                storename        );        call.enqueue(new Callback<JsonArray>() {            @Override            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {                if (response.isSuccessful() && response.body() != null) {                    tvResult.setText(response.body().toString());                } else {                    String errorMsg = "Error: " + response.code() + " " + response.message();                    try {                        errorMsg += "\n" + response.errorBody().string();                    } catch (Exception ignored) {}                    tvResult.setText(errorMsg);                }            }            @Override            public void onFailure(Call<JsonArray> call, Throwable t) {                Log.e("TaskTrackerActivity","onFailure",t);                tvResult.setText("Failed: " + t.getMessage());            }        });    }}
