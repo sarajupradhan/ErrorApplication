@@ -10,14 +10,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -29,12 +34,17 @@ import com.example.errorapplication.error.bluetooth.spp.SPPHeadSetMgr;
 import com.test.error.ErrorLibTest;
 import com.test.error.MemoryEater;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -59,12 +69,17 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private static final String TAG = "MainActivity";
-
+    Switch debugSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        debugSwitch = findViewById(R.id.debug_switch);
+        Intent intent = getIntent();
+        updateIntent(intent);
+//        ImageView imageView = findViewById(R.id.imageView);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_large_image);
+//        imageView.setImageBitmap(bitmap);
         initializeButtons();
 
         EditText editText = findViewById(R.id.editText);
@@ -79,6 +94,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         checkAndStartService(true);
+    }
+    @Override
+    public void onNewIntent(Intent intent){
+        updateIntent(intent);
+        super.onNewIntent(intent);
+    }
+//    adb push WFCPTTProDefault.json /data/local/tmp/
+//adb shell am start -n com.example.errorapplication/.MainActivity -a com.example.errorapplication.ACTION_DEFAULT_CONFIG --es configpath "/data/local/tmp/WFCPTTProDefault.json"
+    private void updateIntent(Intent intent) {
+        if (intent != null) {
+            String intentAction = intent.getAction();
+            if (!TextUtils.isEmpty(intentAction)
+                    && intentAction.equalsIgnoreCase("com.example.errorapplication.ACTION_DEFAULT_CONFIG")) {
+                String path = intent.getStringExtra("configpath");
+                File configFile = new File(path);
+                if(configFile.exists()){
+                    try (final FileInputStream fis = new FileInputStream(configFile);
+                         final InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+                         final BufferedReader bufferedReader = new BufferedReader(isr)
+                    ) {
+
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            sb.append(line).append("\n");
+                        }
+                        String jsonStr = sb.toString();
+                        JSONObject jsonObject = new JSONObject(jsonStr);
+                        String isDebugMode = jsonObject.getString("is_debug_mode");
+                        debugSwitch.setChecked(Boolean.parseBoolean(isDebugMode));
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
     }
 
     public void checkAndStartService(boolean isForceCheckBluetooth) {
