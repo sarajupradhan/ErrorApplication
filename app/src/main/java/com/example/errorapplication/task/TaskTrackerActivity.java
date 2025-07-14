@@ -1,5 +1,6 @@
 package com.example.errorapplication.task;
 
+import java.util.List;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -63,16 +64,16 @@ public class TaskTrackerActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchTasks(String storename) {
+            private void fetchTasks(String storename) {
         tvResult.setText("Loading...");
-        Call<JsonObject> call = api.getTasks(
+        Call<List<JsonObject>> call = api.getTasks(
                 "TaskTracker_Automation",
                 "TaskTracker_Automation",
                 storename
         );
-        call.enqueue(new Callback<JsonObject>() {
+        call.enqueue(new Callback<List<JsonObject>>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<List<JsonObject>> call, Response<List<JsonObject>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     tvResult.setText(response.body().toString());
                 } else {
@@ -85,7 +86,7 @@ public class TaskTrackerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<List<JsonObject>> call, Throwable t) {
                 Log.e("TaskTrackerActivity","onFailure",t);
                 tvResult.setText("Failed: " + t.getMessage());
             }
