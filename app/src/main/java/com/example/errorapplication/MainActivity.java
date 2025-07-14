@@ -138,9 +138,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
-            int num = Integer.parseInt(currentDate);
+        private void simulateNumberFormatException() {
+        String currentDate = getCurrentDate();
+        try {
+            // Correct way: parse the date string to a Date object
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+            Date date = sdf.parse(currentDate);
+            // Use 'date' as needed, e.g., get time in milliseconds as a numeric value
+            long timeMillis = date != null ? date.getTime() : 0;
+            // For demonstration, show a Toast with the milliseconds
+            Toast.makeText(this, "Parsed date millis: " + timeMillis, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to parse date string", e);
+            writeErrorToFile("NumberFormatException (date parsing)", e);
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
