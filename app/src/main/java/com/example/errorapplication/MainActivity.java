@@ -138,9 +138,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
-            int num = Integer.parseInt(currentDate);
+        private void simulateNumberFormatException() {
+        String currentDate = getCurrentDate();
+        // Parse the date string using SimpleDateFormat
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+        try {
+            Date date = sdf.parse(currentDate);
+            // If you need an integer, for example, the timestamp in milliseconds
+            long timestamp = date.getTime();
+            // Use the timestamp or date object as needed
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Optionally, handle the error appropriately
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
