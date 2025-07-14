@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 public interface TaskTrackerApi {
     @GET("ems/v1/api/task-tracker/tasks")
-    Call<JsonObject> getTasks(
+    Call<JsonArray> getTasks(
             @Header("API-Key") String apiKey,
             @Header("customerId") String customerId,
             @Query("storename") String storename
