@@ -138,9 +138,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
-            int num = Integer.parseInt(currentDate);
+        private void simulateNumberFormatException() {
+        String currentDate = getCurrentDate();
+        // Attempt to parse the date string using SimpleDateFormat instead of Integer.parseInt
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+        try {
+            Date date = sdf.parse(currentDate);
+            // Use the date object as needed (for demonstration, just log it)
+            Log.d(TAG, "Parsed date: " + date);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to parse date string: " + currentDate, e);
+            writeErrorToFile("NumberFormatException (Date Parsing)", e);
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
