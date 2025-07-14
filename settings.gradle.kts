@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ErrorApplication"
 include(":app")
- 
+include(":error")

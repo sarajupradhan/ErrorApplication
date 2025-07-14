@@ -26,6 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.errorapplication.R;
 import com.example.errorapplication.error.bluetooth.BTHeadSetMgr;
 import com.example.errorapplication.error.bluetooth.spp.SPPHeadSetMgr;
+import com.test.error.ErrorLibTest;
+import com.test.error.MemoryEater;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -146,6 +148,10 @@ public class MainActivity extends AppCompatActivity {
         Button buttonIndexOutOfBounds = findViewById(getResources().getIdentifier("button8", "id", getPackageName()));
         buttonIndexOutOfBounds.setText(R.string.index_out_of_bounds_exception);
         buttonIndexOutOfBounds.setOnClickListener(v -> simulateIndexOutOfBoundsException());
+
+        Button buttonOOM = findViewById(R.id.button9);
+        buttonOOM.setText(R.string.oom_exception);
+        buttonOOM.setOnClickListener(v -> simulateOOMException());
     }
 
     private String getCurrentTimestamp() {
@@ -155,20 +161,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNullPointerException() {
-        String nullStr = null;
-        nullStr.length();
 //        ErrorApplication.postStackTraceToApi("Test");
-
+        ErrorLibTest.nullPointer();
+    }
+    private void simulateOOMException() {
+//        ErrorApplication.postStackTraceToApi("Test");
+        MemoryEater.simulateOOM();
     }
 
     private void simulateArrayIndexOutOfBoundsException() {
-        try {
-            int[] array = new int[5];
-            int number = array[10];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            Log.e(TAG, getString(R.string.array_index_out_of_bounds_exception), e);
-            writeErrorToFile(getString(R.string.array_index_out_of_bounds_exception), e);
-        }
+        int[] array = new int[5];
+        int number = array[10];
     }
 
     private void simulateClassCastException() {

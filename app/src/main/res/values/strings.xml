@@ -51,6 +51,7 @@
     <string name="file_not_found_exception">FileNotFoundException</string>
     <string name="number_format_exception">NumberFormatException</string>
     <string name="index_out_of_bounds_exception">IndexOutOfBoundsException</string>
+    <string name="oom_exception">OOMException</string>
 
     <string name="timestamp">TimeStamp: </string>
     <string name="error_occurred">Error occurred: </string>
