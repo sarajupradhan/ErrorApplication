@@ -108,14 +108,26 @@ public class MainActivity extends AppCompatActivity {
         String domain = applicationStates.get(0);
     }
     private void simulateArrayIndexOutOfBoundsException() {
-            String serverUrl = getServerUrl();
-            String[] serverUrlAr = serverUrl.split("\\.");
+        String serverUrl = getServerUrl();
+        String[] serverUrlAr = serverUrl.split("\\.");
+        if (serverUrlAr.length > 10) {
             String domain = serverUrlAr[10];
+            Log.d("MainActivity", "Domain at index 10: " + domain);
+        } else {
+            Log.e("MainActivity", "ArrayIndexOutOfBounds: serverUrlAr.length=" + serverUrlAr.length + ", tried to access index 10. serverUrl=" + serverUrl);
+            Toast.makeText(this, "Invalid server URL format. Please check your input.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void simulateClassCastException() {
+        if (this instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) this;
+        } else {
+            Log.e("MainActivity", "Activity does not implement OnFragmentInteractionListener");
+            Toast.makeText(this, "Error: Activity does not implement required interface.", Toast.LENGTH_SHORT).show();
+            mListener = null;
+        }
     }
 
-    private void simulateClassCastException() {
-        mListener = (OnFragmentInteractionListener) getApplicationContext();
-    }
 
     private void simulateArithmeticException() {
             int result = getStores().size() / getAssignedStores().size();
@@ -128,19 +140,35 @@ public class MainActivity extends AppCompatActivity {
                 throw new IllegalArgumentException("Array size must be non-negative");
             }
     }
-
     private void simulateFileNotFoundException() {
-        try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
+        String fileName = "non_existent_file.txt";
+        File file = new File(getFilesDir(), fileName);
+        if (!file.exists()) {
+            Log.e(TAG, "File does not exist: " + file.getAbsolutePath());
+            Toast.makeText(this, "File not found: " + fileName, Toast.LENGTH_SHORT).show();
+            writeErrorToFile(getString(R.string.file_not_found_exception) + ": " + file.getAbsolutePath(), new FileNotFoundException(file.getAbsolutePath()));
+            return;
+        }
+        try (FileInputStream fis = new FileInputStream(file)) {
+            // Simulate file read or further processing here if needed
         } catch (FileNotFoundException e) {
             Log.e(TAG, getString(R.string.file_not_found_exception), e);
             writeErrorToFile(getString(R.string.file_not_found_exception), e);
+        } catch (IOException e) {
+            Log.e(TAG, "IO Exception while reading file: " + file.getAbsolutePath(), e);
+            writeErrorToFile("IO Exception: " + file.getAbsolutePath(), e);
         }
     }
 
+
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from currentDate: " + currentDate, e);
+            Toast.makeText(this, "Invalid number format: " + currentDate, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {

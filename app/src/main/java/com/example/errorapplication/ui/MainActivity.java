@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.errorapplication.R;
 
 import java.util.List;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +30,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateArithmeticException() {
-        int result = getStores().size() / getAssignedStores().size();
+        int storesSize = getStores() != null ? getStores().size() : 0;
+        int assignedStoresSize = getAssignedStores() != null ? getAssignedStores().size() : 0;
+
+        if (assignedStoresSize == 0) {
+            Log.e("MainActivity", "Division by zero prevented: assignedStoresSize is zero. storesSize=" + storesSize);
+            // Optionally, show a message to the user or handle gracefully
+            return;
+        }
+
+        int result = storesSize / assignedStoresSize;
+        Log.d("MainActivity", "Division result: " + result);
     }
 
     private List<String> getStores(){
