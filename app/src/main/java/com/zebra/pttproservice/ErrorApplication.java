@@ -70,7 +70,7 @@ public class ErrorApplication extends Application
             json.put("package", "com.zebra.pttproservice");
             json.put("id", UUID.randomUUID().toString());
             json.put("app_version","1.0.0");
-            json.put("app_name","ErrorApplication");
+            json.put("app_name","PttProService");
             json.put("stack_trace", "FATAL EXCEPTION: "+stackTrace);
         } catch (JSONException e) {
             throw new RuntimeException(e);
