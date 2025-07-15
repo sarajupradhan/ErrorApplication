@@ -58,12 +58,22 @@ public class SamplePTTPro extends AppCompatActivity {
                 String jsonStr = sb.toString();
                 JSONObject jsonObject = new JSONObject(jsonStr);
                 String isDebugMode = jsonObject.getString("log_level");
-                Log.d("ErrorApplication","isDebugMode "+Integer.parseInt(isDebugMode));
+                int logLevel = -1;
+                try {
+                    logLevel = Integer.parseInt(isDebugMode.trim());
+                    Log.d("ErrorApplication", "isDebugMode " + logLevel);
+                } catch (NumberFormatException nfe) {
+                    Log.e("ErrorApplication", "Invalid log_level value in config: '" + isDebugMode + "'", nfe);
+                    // Optionally, handle fallback or default value here
+                }
             } catch (FileNotFoundException e) {
+                Log.e("ErrorApplication", "Config file not found", e);
                 throw new RuntimeException(e);
             } catch (IOException e) {
+                Log.e("ErrorApplication", "IO error reading config file", e);
                 throw new RuntimeException(e);
             } catch (JSONException e) {
+                Log.e("ErrorApplication", "JSON parsing error in config file", e);
                 throw new RuntimeException(e);
             }
             Intent intent = new Intent();
