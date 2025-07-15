@@ -23,6 +23,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.io.IOException;
+android.widget.Toast
+android.util.Log
 
 public class MainActivity extends AppCompatActivity {
 
@@ -139,8 +141,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from date string: " + currentDate, e);
+            Toast.makeText(this, "Invalid number format: " + currentDate, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
