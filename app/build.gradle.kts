@@ -25,6 +25,25 @@ android {
             )
         }
     }
+
+    applicationVariants.all {
+        this.outputs
+            .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
+            .forEach { output ->
+                val variant = this.buildType.name
+                val flavor = this.flavorName
+                val appName = "ErrorGeneration"
+                var apkName = if (flavor.isNotEmpty()) {
+                    "${appName}_${flavor[0].uppercase()}${flavor.substring(1)}_${this.versionName}"
+                } else {
+                    "${appName}-${this.versionName}"
+                }
+                //if (variant.isNotEmpty()) apkName += "_$variant"
+                apkName += ".apk"
+                println("ApkName=$apkName $variant")
+                output.outputFileName = apkName
+            }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -51,6 +70,12 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp-urlconnection:3.0.1")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
     implementation(libs.activity)
+    implementation(libs.activity)
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation(libs.gson)
+    implementation(libs.retrofit.gson)
+    testImplementation(libs.okHttp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

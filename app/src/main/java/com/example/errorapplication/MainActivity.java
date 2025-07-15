@@ -47,6 +47,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.io.IOException;
 
@@ -70,29 +71,24 @@ public class MainActivity extends AppCompatActivity {
     };
     private static final String TAG = "MainActivity";
     Switch debugSwitch;
+
+    private OnFragmentInteractionListener mListener;
+    private String currentState = "default";
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(String data);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        debugSwitch = findViewById(R.id.debug_switch);
         Intent intent = getIntent();
         updateIntent(intent);
 //        ImageView imageView = findViewById(R.id.imageView);
 //        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_large_image);
 //        imageView.setImageBitmap(bitmap);
         initializeButtons();
-
-        EditText editText = findViewById(R.id.editText);
-        Button submitButton = findViewById(R.id.submitButton);
-
-        submitButton.setOnClickListener(v -> {
-            String enteredText = editText.getText().toString();
-            if (!enteredText.isEmpty()) {
-                writeErrorToFile(enteredText, null);
-            } else {
-                Toast.makeText(this, "Please enter text to log.", Toast.LENGTH_SHORT).show();
-            }
-        });
         checkAndStartService(true);
     }
     @Override
@@ -172,17 +168,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initializeButtons() {
-        Button buttonNullPointer = findViewById(getResources().getIdentifier("button1", "id", getPackageName()));
-        buttonNullPointer.setText(R.string.null_pointer_exception);
-        buttonNullPointer.setOnClickListener(v -> simulateNullPointerException());
 
-        Button buttonArrayIndex = findViewById(getResources().getIdentifier("button2", "id", getPackageName()));
-        buttonArrayIndex.setText(R.string.array_index_out_of_bounds_exception);
-        buttonArrayIndex.setOnClickListener(v -> simulateArrayIndexOutOfBoundsException());
+        Button buttonNumberFormat = findViewById(getResources().getIdentifier("button1", "id", getPackageName()));
+        buttonNumberFormat.setText(R.string.number_format_exception);
+        buttonNumberFormat.setOnClickListener(v -> simulateNumberFormatException());
 
-        Button buttonClassCast = findViewById(getResources().getIdentifier("button3", "id", getPackageName()));
+        Button buttonClassCast = findViewById(getResources().getIdentifier("button2", "id", getPackageName()));
         buttonClassCast.setText(R.string.class_cast_exception);
         buttonClassCast.setOnClickListener(v -> simulateClassCastException());
+
+        Button buttonArrayIndex = findViewById(getResources().getIdentifier("button3", "id", getPackageName()));
+        buttonArrayIndex.setText(R.string.array_index_out_of_bounds_exception);
+        buttonArrayIndex.setOnClickListener(v -> simulateArrayIndexOutOfBoundsException());
 
         Button buttonArithmetic = findViewById(getResources().getIdentifier("button4", "id", getPackageName()));
         buttonArithmetic.setText(R.string.arithmetic_exception);
@@ -192,21 +189,41 @@ public class MainActivity extends AppCompatActivity {
         buttonIllegalArgument.setText(R.string.illegal_argument_exception);
         buttonIllegalArgument.setOnClickListener(v -> simulateIllegalArgumentException());
 
-        Button buttonFileNotFound = findViewById(getResources().getIdentifier("button6", "id", getPackageName()));
-        buttonFileNotFound.setText(R.string.file_not_found_exception);
-        buttonFileNotFound.setOnClickListener(v -> simulateFileNotFoundException());
+//        Button buttonFileNotFound = findViewById(getResources().getIdentifier("button6", "id", getPackageName()));
+//        buttonFileNotFound.setText(R.string.file_not_found_exception);
+//        buttonFileNotFound.setOnClickListener(v -> simulateFileNotFoundException());
 
-        Button buttonNumberFormat = findViewById(getResources().getIdentifier("button7", "id", getPackageName()));
-        buttonNumberFormat.setText(R.string.number_format_exception);
-        buttonNumberFormat.setOnClickListener(v -> simulateNumberFormatException());
+        Button buttonNullPointer = findViewById(getResources().getIdentifier("button7", "id", getPackageName()));
+        buttonNullPointer.setText(R.string.null_pointer_exception);
+        buttonNullPointer.setOnClickListener(v -> simulateNullPointerException());
 
         Button buttonIndexOutOfBounds = findViewById(getResources().getIdentifier("button8", "id", getPackageName()));
         buttonIndexOutOfBounds.setText(R.string.index_out_of_bounds_exception);
         buttonIndexOutOfBounds.setOnClickListener(v -> simulateIndexOutOfBoundsException());
 
-        Button buttonOOM = findViewById(R.id.button9);
+
+        findViewById(getResources().getIdentifier("button9", "id", getPackageName()))
+                .setOnClickListener(v -> {
+                    Intent intent  = new Intent(MainActivity.this, MainActivity2.class);
+                  startActivity(intent);
+                });
+
+        findViewById(getResources().getIdentifier("button10", "id", getPackageName()))
+                .setOnClickListener(v -> {
+                    Intent intent  = new Intent(MainActivity.this, com.example.errorapplication.ui.MainActivity.class);
+                    startActivity(intent);
+                });
+
+        findViewById(getResources().getIdentifier("button11", "id", getPackageName()))
+                .setOnClickListener(v -> {
+                    Intent intent  = new Intent(MainActivity.this, com.example.errorapplication.task.TaskTrackerActivity.class);
+                    startActivity(intent);
+                });
+
+        Button buttonOOM = findViewById(R.id.button12);
         buttonOOM.setText(R.string.oom_exception);
         buttonOOM.setOnClickListener(v -> simulateOOMException());
+
     }
 
     private String getCurrentTimestamp() {
@@ -223,46 +240,28 @@ public class MainActivity extends AppCompatActivity {
 //        ErrorApplication.postStackTraceToApi("Test");
         MemoryEater.simulateOOM();
     }
-
     private void simulateArrayIndexOutOfBoundsException() {
         int[] array = new int[5];
         int number = array[10];
+            String serverUrl = getServerUrl();
+            String[] serverUrlAr = serverUrl.split("\\.");
+            String domain = serverUrlAr[10];
     }
 
     private void simulateClassCastException() {
-        try {
-            Object i = Integer.valueOf(42);
-            String s = (String) i;
-        } catch (ClassCastException e) {
-            Log.e(TAG, getString(R.string.class_cast_exception), e);
-            writeErrorToFile(getString(R.string.class_cast_exception), e);
-        }
+        mListener = (OnFragmentInteractionListener) getApplicationContext();
     }
 
     private void simulateArithmeticException() {
-        try {
-            int result = 10 / 0;
-        } catch (ArithmeticException e) {
-            Log.e(TAG, getString(R.string.arithmetic_exception), e);
-            writeErrorToFile(getString(R.string.arithmetic_exception), e);
-        }
+            int result = getStores().size() / getAssignedStores().size();
     }
 
     private void simulateIllegalArgumentException() {
-        try {
-            int size = -1;
-            int[] invalidArray = new int[size];
-
-            if (size < 0) {
+            int newSupportedHeadset = getSupportedHeadset().size() - getTotalDeprecatedHeadset() ;
+            int[] invalidArray = new int[newSupportedHeadset];
+            if (newSupportedHeadset < 0) {
                 throw new IllegalArgumentException("Array size must be non-negative");
             }
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, getString(R.string.illegal_argument_exception), e);
-            writeErrorToFile(getString(R.string.illegal_argument_exception), e);
-        } catch (NegativeArraySizeException e) {
-            Log.e(TAG, getString(R.string.illegal_argument_exception), e);
-            writeErrorToFile(getString(R.string.illegal_argument_exception), e);
-        }
     }
 
     private void simulateFileNotFoundException() {
@@ -275,22 +274,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-        try {
-            int num = Integer.parseInt("abc");
-        } catch (NumberFormatException e) {
-            Log.e(TAG, getString(R.string.number_format_exception), e);
-            writeErrorToFile(getString(R.string.number_format_exception), e);
-        }
+            String currentDate =  getCurrentDate();
+            int num = Integer.parseInt(currentDate);
     }
 
     private void simulateIndexOutOfBoundsException() {
-        try {
-            String str = "Hello";
-            char ch = str.charAt(10);
-        } catch (IndexOutOfBoundsException e) {
-            Log.e(TAG, getString(R.string.index_out_of_bounds_exception), e);
-            writeErrorToFile(getString(R.string.index_out_of_bounds_exception), e);
-        }
+            String contactInfo = getContactInfo();
+            char userId = contactInfo.charAt(30);
     }
 
     private void writeErrorToFile(String errorType, Exception e) {
@@ -322,5 +312,42 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.failed_to_access_storage), Toast.LENGTH_SHORT).show();
         }
     }
+
+    private List<String> getStores(){
+        return List.of("Store1", "Store2");
+    }
+
+    private List<String> getAssignedStores(){
+        return List.of();
+    }
+
+    private String getServerUrl(){
+        return "com.example.errorapplication";
+    }
+
+    private String getContactInfo(){
+        return "com.example.errorapplication@";
+    }
+
+    private String getCurrentDate(){
+        return new Date().toString();
+    }
+
+    private List<String> getSupportedHeadset(){
+        return List.of();
+    }
+
+    private int getTotalDeprecatedHeadset(){
+        return 1;
+    }
+
+    private List<String> getApplicationScreen(){
+        return null;
+    }
+
+    private void updateApplicationState(final String currentState){
+        currentState.equals("default");
+    }
+
 }
 
