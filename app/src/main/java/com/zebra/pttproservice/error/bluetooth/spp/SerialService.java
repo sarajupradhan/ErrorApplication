@@ -1,11 +1,11 @@
-package com.example.errorapplication.error.bluetooth.spp;
+package com.zebra.pttproservice.error.bluetooth.spp;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
 
-import com.example.errorapplication.error.bluetooth.BTHelper;
+import com.zebra.pttproservice.error.bluetooth.BTHelper;
 
 import java.io.IOException;
 import java.util.LinkedList;

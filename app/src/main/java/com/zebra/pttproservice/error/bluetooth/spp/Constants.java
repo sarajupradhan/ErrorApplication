@@ -1,4 +1,4 @@
-package com.example.errorapplication.error.bluetooth.spp;
+package com.zebra.pttproservice.error.bluetooth.spp;
 
 
 class Constants {

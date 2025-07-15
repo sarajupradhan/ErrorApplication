@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.errorapplication"
+    namespace = "com.zebra.pttproservice"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.errorapplication"
+        applicationId = "com.zebra.pttproservice"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -32,7 +32,7 @@ android {
             .forEach { output ->
                 val variant = this.buildType.name
                 val flavor = this.flavorName
-                val appName = "ErrorGeneration"
+                val appName = "PTTProService"
                 var apkName = if (flavor.isNotEmpty()) {
                     "${appName}_${flavor[0].uppercase()}${flavor.substring(1)}_${this.versionName}"
                 } else {

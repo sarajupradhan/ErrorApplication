@@ -1,4 +1,4 @@
-package com.example.errorapplication.task;
+package com.zebra.pttproservice.task;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.errorapplication.R;
+import com.zebra.pttproservice.R;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 

@@ -1,4 +1,4 @@
-package com.example.errorapplication;
+package com.zebra.pttproservice;
 
 import android.app.Application;
 import android.util.Log;
@@ -50,7 +50,7 @@ public class ErrorApplication extends Application
 // {
 //    "id": "f2e1b2c7-6c7e-4c7b-9e1a-1a2b3c4d5e6f",
 //    "name": "NullPointerException in simulateNullPointerException",
-//    "log": "java.lang.NullPointerException: Attempt to invoke virtual method 'int java.lang.String.length()' on a null object reference\n\tat com.example.errorapplication.MainActivity.simulateNullPointerException(MainActivity.java:92)\n\tat com.example.errorapplication.MainActivity.lambda$initializeButtons$1$com-example-errorapplication-MainActivity(MainActivity.java:52)",
+//    "log": "java.lang.NullPointerException: Attempt to invoke virtual method 'int java.lang.String.length()' on a null object reference\n\tat com.zebra.pttproservice.MainActivity.simulateNullPointerException(MainActivity.java:92)\n\tat com.zebra.pttproservice.MainActivity.lambda$initializeButtons$1$com-example-errorapplication-MainActivity(MainActivity.java:52)",
 //    "file": "MainActivity.java",
 //    "line": 92,
 //    "cause": "A String object is null and its length() method is being called without a null check.",
@@ -67,7 +67,7 @@ public class ErrorApplication extends Application
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
         JSONObject json = new JSONObject();
         try {
-            json.put("package", "com.example.errorapplication");
+            json.put("package", "com.zebra.pttproservice");
             json.put("id", UUID.randomUUID().toString());
             json.put("app_version","1.0.0");
             json.put("app_name","ErrorApplication");

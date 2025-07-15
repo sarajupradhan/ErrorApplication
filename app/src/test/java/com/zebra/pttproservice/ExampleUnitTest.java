@@ -1,4 +1,4 @@
-package com.example.errorapplication;
+package com.zebra.pttproservice;
 
 import org.junit.Test;
 

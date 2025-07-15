@@ -37,12 +37,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter android:label="Errorapp">
-                <action android:name="com.example.errorapplication.ACTION_DEFAULT_CONFIG" />
+                <action android:name="com.zebra.pttproservice.ACTION_DEFAULT_CONFIG" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.errorapplication.task.TaskTrackerActivity" />
+        <activity android:name="com.zebra.pttproservice.task.TaskTrackerActivity" />
     </application>
 
 </manifest>

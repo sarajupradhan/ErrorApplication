@@ -1,4 +1,4 @@
-package com.example.errorapplication.error.bluetooth.spp;
+package com.zebra.pttproservice.error.bluetooth.spp;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;

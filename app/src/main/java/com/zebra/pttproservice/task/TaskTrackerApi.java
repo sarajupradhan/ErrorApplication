@@ -1,4 +1,4 @@
-package com.example.errorapplication.task;
+package com.zebra.pttproservice.task;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

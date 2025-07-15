@@ -1,15 +1,12 @@
-package com.example.errorapplication.ui;
+package com.zebra.pttproservice.ui;
 
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.errorapplication.R;
+import com.zebra.pttproservice.R;
 
 import java.util.List;
 

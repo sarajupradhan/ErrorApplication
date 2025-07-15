@@ -1,4 +1,4 @@
-package com.example.errorapplication.error.bluetooth.spp;
+package com.zebra.pttproservice.error.bluetooth.spp;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
-import com.example.errorapplication.error.bluetooth.BTHeadSetMgr;
+import com.zebra.pttproservice.error.bluetooth.BTHeadSetMgr;
 
 
 public class SPPHeadSetMgr extends BTHeadSetMgr implements SerialListener {

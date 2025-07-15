@@ -1,23 +1,15 @@
-package com.example.errorapplication.error.bluetooth;
+package com.zebra.pttproservice.error.bluetooth;
 
 
 import android.Manifest;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-
-import com.example.errorapplication.error.bluetooth.spp.SPPHeadSetMgr;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.zebra.pttproservice.error.bluetooth.spp.SPPHeadSetMgr;
 
 public abstract class BTHeadSetMgr {
     public static final String TAG = BTHeadSetMgr.class.getSimpleName();
