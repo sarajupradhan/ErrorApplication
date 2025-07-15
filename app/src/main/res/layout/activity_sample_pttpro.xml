@@ -10,6 +10,7 @@
 
 
     <ImageButton
+        android:layout_marginTop="40dp"
         android:id="@+id/button_menu_3dots"
         style="?android:attr/actionOverflowButtonStyle"
         android:layout_width="wrap_content"
