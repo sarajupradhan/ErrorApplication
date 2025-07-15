@@ -274,8 +274,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
-            int num = Integer.parseInt(currentDate);
+        String currentDate = getCurrentDate();
+        int num = 0;
+        try {
+            num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from currentDate: " + currentDate, e);
+            Toast.makeText(this, "Invalid number format: " + currentDate, Toast.LENGTH_SHORT).show();
+            // Handle error appropriately, e.g., set num to a default value or return
+            return;
+        }
+        // Use num as needed
     }
 
     private void simulateIndexOutOfBoundsException() {
