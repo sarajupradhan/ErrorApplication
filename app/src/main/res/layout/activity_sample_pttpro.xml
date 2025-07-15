@@ -1,0 +1,109 @@
+<!-- for any devices with smallest width >= 360dp e.g. TC51 !-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/map_background">
+
+
+
+    <ImageButton
+        android:id="@+id/button_menu_3dots"
+        style="?android:attr/actionOverflowButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/about_zlogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/fraglogin_logo_padding_top"
+            app:tint="@color/zebra_logo_color"
+            android:src="@drawable/logo" />
+        <TextView
+            android:id="@+id/wfctitle"
+            style="@style/LogInTitleTextView"
+            android:paddingTop="50dp"
+            android:layout_below="@id/about_zlogo"
+            android:text="Workcloud Communication \n PTT Pro"/>
+
+        <LinearLayout
+            android:id="@+id/login_form"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical ="true"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fraglogin_layout_marginLeft"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/fraglogin_layout_marginRight"
+            android:background="@drawable/bg_login_form"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/password"
+                android:textColor="@color/colorPrimaryDark"
+                style="@style/LogInPasswordTextView" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/fraglogin_layout_marginLeft"
+                android:layout_marginEnd="@dimen/fraglogin_layout_marginRight"
+                android:background="@android:color/transparent" />
+
+
+            <TextView
+                android:id="@+id/login_button"
+                style="@style/LogInButtonTextView"
+                android:text="ACTIVATE" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp" />
+
+            <TextView
+                android:id="@+id/login_esn_button"
+                style="@style/LogInButtonTextView"
+                android:color="@color/login_button_textview_disabled_textcolor"
+                android:text="ACTIVATE WITH ESN" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/login_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:paddingStart="@dimen/fraglogin_padding_left"
+        android:paddingEnd="@dimen/fraglogin_padding_right"
+        android:paddingBottom="60dp">
+
+
+        <TextView
+            android:id="@+id/privacyTextView"
+            style="@style/LogInFooterTextView"
+            android:text="Privacy" />
+
+        <TextView
+            android:id="@+id/infoTextView"
+            style="@style/LogInFooterTextView"
+            android:text="Info" />
+
+    </LinearLayout>
+</RelativeLayout>

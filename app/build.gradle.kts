@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.errorapplication"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -50,6 +50,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:3.12.0")
     implementation ("com.squareup.okhttp3:okhttp-urlconnection:3.0.1")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation(libs.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

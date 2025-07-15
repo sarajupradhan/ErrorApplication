@@ -1,0 +1,625 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppThemeRootNAB" parent="Theme.AppCompat.DayNight">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.ActivityActionBar" parent="Theme.AppCompat.DayNight" >
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+        <item name="android:textColorSecondary">@color/setting_summary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:alertDialogTheme">@style/DialogTheme</item>
+        <item name="android:background">@color/apptheme_activityactionBar_background</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:colorControlHighlight">@color/setting_summary</item>
+    </style>
+
+    <style name="AppTheme.AlertCallActivity" parent="Theme.AppCompat.DayNight.Dialog" >
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/blackcolor</item>
+    </style>
+    <style name="AppTheme.RecordAudioActivity" parent="Theme.AppCompat.DayNight.Dialog" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">99%</item>
+        <item name="android:windowMinWidthMinor">99%</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/blackcolor</item>
+    </style>
+    <style name="DialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/blackcolor</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/apptheme_activityactionBar_background</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MenuItemTextAppearance" parent="android:TextAppearance.Holo.Widget.ActionBar.Menu">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ActionButton" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:minWidth">10dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:drawablePadding">0dp</item>
+        <item name="android:padding">0dp</item>
+
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" >
+        <item name="android:actionButtonStyle">@style/ActionButton</item>
+        <item name="android:textColorPrimary">@color/actionBarTextColor</item>
+        <item name="android:textColorSecondary">@color/colorSubTitleText</item>
+        <item name="android:actionMenuTextAppearance">@style/MenuItemTextAppearance</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" >
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+
+    <style name="Custom.Widget.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+    </style>
+
+    <style name="Theme.GuidelinesCompat.Light.DarkToolbar" parent="Theme.AppCompat.DayNight.DarkActionBar">
+
+        <item name="toolbarStyle">@style/Custom.Widget.Toolbar</item>
+
+        <item name="actionOverflowButtonStyle">@style/Custom.Widget.ActionButton.Overflow</item>
+    </style>
+
+    <style name="Custom.Widget.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="maxButtonHeight">24dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/tab_max_width</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabPaddingStart">2dp</item>
+        <item name="tabPaddingEnd">2dp</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabBackground">@color/tabBackgroundColor</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/colorPrimaryText</item>
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/tab_title_font_size</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Dialog.FullScreen" parent="Theme.AppCompat.Dialog">
+        <item name="android:padding">0dp</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
+    <style name="customDnDSwitch" parent="Theme.AppCompat.DayNight">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorSwitchCompactThumbGreen</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/dndSwitchOff</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/dndSwitchOff</item>
+    </style>
+
+
+
+    <style name="customEnableDisableSwitch" parent="Theme.AppCompat.DayNight">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorSwitchCompactThumbGreen</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/main_pink</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/warm_grey_two</item>
+    </style>
+
+    <style name="AppTheme.WebViewActivity" parent="Theme.AppCompat.DayNight.Dialog" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">99%</item>
+        <item name="android:windowMinWidthMinor">99%</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/blackcolor</item>
+    </style>
+
+
+    <style name="DialogBoxButtonTextViewVertical" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/dialogbox_button_text_size</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="DialogBoxButtonTextViewHorizontal" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/dialogbox_button_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+
+    <style name="DataInfoViewTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/data_usage_title_textsize</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="DataInfoViewDescription">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:gravity">left|end</item>
+        <item name="android:textColor">@color/dlg_description_color</item>
+        <item name="android:textSize">@dimen/data_usage_description_textsize</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="DataInfoViewButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/data_usage_description_textsize</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="DialogBoxItemTextView" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:textColor">@color/dlg_description_color</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="DialogBoxDescriptionTextView" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:textColor">@color/dlg_description_color</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="DialogBoxSmallItemTextView" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_small_spacing</item>
+        <item name="android:textColor">@color/dlg_description_color</item>
+        <item name="android:textSize">@dimen/description_smaller_text_size</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+
+    <style name="DialogBoxMultiLineDescriptionTextView" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:textColor">@color/dlg_description_color</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="SectionHeaderTitleTextView2" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:layout_marginRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+    </style>
+
+    <style name="DialogBoxTitleTextView" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/dialogbox_padding_top</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:textColor">@color/dlg_title_color</item>
+        <item name="android:textSize">@dimen/dialogbox_title_text_size</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="DialogBoxFullTitleTextView" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/dialogbox_padding_top</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:textColor">@color/dlg_title_color</item>
+        <item name="android:textSize">@dimen/dialogbox_title_text_size</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="ContactListItemTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+    </style>
+
+
+    <style name="NameListItemTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+    </style>
+
+    <style name="TitleNameListItemTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+    </style>
+
+    <style name="IconListItemImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_gravity">right|center_vertical</item>
+    </style>
+
+
+    <style name="DialogBoxSimpleTitleTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/dialogbox_title_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="DialogListView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:divider">@color/colorListViewDivider</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="DialogListItemImageView">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:paddingRight">32dp</item>
+    </style>
+
+    <style name="DialogListItemTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:textColor">@color/dlg_description_color</item>
+        <item name="android:textSize">@dimen/dialogbox_description_text_size</item>
+    </style>
+
+    <style name="DialogListItemRadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="NormalDescriptionTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/grouplist_title_textsize</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+    </style>
+
+    <style name="NormalCenterTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/grouplist_title_textsize</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+    </style>
+    <style name="ActionBarTitleTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+    </style>
+
+    <style name="GroupListItemTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/grouplist_title_textsize</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/list_item_space_icon_text</item>
+    </style>
+    <style name="GroupListItemSubTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/grouplist_title_textsize</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorListItemSubText</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingLeft">@dimen/list_item_space_icon_text</item>
+    </style>
+
+    <style name="ContactListItemSubTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorListItemSubText</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingLeft">@dimen/list_item_space_icon_text</item>
+    </style>
+    <style name="GroupListFavItemSubTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/grouplist_title_textsize</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorListItemSubText</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+
+    </style>
+    <style name="GroupListItemMemberTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/grouplistmem_textsize</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorListItemText</item>
+    </style>
+
+
+    <style name="DialogBoxButtonHorizontal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingTop">@dimen/dialogbox_padding_top</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/dialogbox_button_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="SectionHeaderTitleTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/dialogbox_button_text_size</item>
+    </style>
+
+    <style name="NavHeaderTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/dlg_title_color</item>
+        <item name="android:textSize">@dimen/dialogbox_button_text_size</item>
+    </style>
+
+    <style name="NavigationDrawerStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/dlg_title_color</item>
+        <item name="android:textSize">@dimen/dialogbox_button_text_size</item>
+    </style>
+
+
+    <!-- Fragment LOG IN -->
+
+    <style name="LogInTitleTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/fraglogin_title_textsize</item>
+        <item name="android:paddingTop">@dimen/fraglogin_title_padding_top</item>
+        <item name="android:paddingBottom">@dimen/fraglogin_title_padding_bottom</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/blacktext</item>
+    </style>
+
+
+    <style name="LogInPasswordTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/fraglogin_pwd_ht</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</item>
+        <item name="android:inputType">textCapCharacters|textNoSuggestions|textVisiblePassword</item>
+        <item name="android:textSize">@dimen/fraglogin_password_textsize</item>
+        <item name="android:paddingRight">@dimen/fraglogin_layout_paddingRight</item>
+        <item name="android:paddingLeft">@dimen/fraglogin_layout_paddingLeft</item>
+        <item name="android:paddingTop">@dimen/fraglogin_pwd_padding_top</item>
+        <item name="android:paddingBottom">@dimen/fraglogin_pwd_padding_bottom</item>
+        <item name="android:hint">Activation Code</item>
+        <item name="android:textColorHint">@color/colorTextHint</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">@color/main_gray</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_blue</item>
+    </style>
+
+
+    <style name="LogInButtonTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:background">@drawable/btn_login</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/fraglogin_button_textsize</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/login_button_textview_statecolor</item>
+    </style>
+
+    <style name="LogInFooterTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/fraglogin_footer_textsize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="LogInEditTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/grouplist_title_textsize</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorListItemSubText</item>
+        <item name="android:paddingTop">@dimen/dialogbox_padding_top</item>
+        <item name="android:paddingBottom">@dimen/dialogbox_padding_bottom</item>
+        <item name="android:paddingRight">@dimen/dialogbox_padding_right</item>
+        <item name="android:paddingLeft">@dimen/dialogbox_padding_left</item>
+    </style>
+
+
+    <style name="EqualButtonSpaceHorizontal">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/dialogbox_button_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <!-- ZEMS styles -->
+    <style name="AppTheme.ZEMSActivityActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" >
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="colorPrimary">@color/dark_blue_color</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/color_white</item>
+        <item name="actionMenuTextColor">@color/colorPrimaryDark</item>
+        <item name="android:actionMenuTextColor">@color/colorPrimaryDark</item>
+        <item name="android:alertDialogTheme">@style/DialogTheme</item>
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+    </style>
+
+
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Entry">
+        <item name="chipIconTint">@color/colorAccent</item>
+        <item name="chipBackgroundColor">@color/color_white</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="chipStrokeColor">@color/category_gray</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+</resources>

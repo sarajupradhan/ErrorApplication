@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
-    <uses-permission android:name="android.permission.INTERNET"/>
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
     <application
+        android:name=".ErrorApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:name=".ErrorApplication"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ErrorApplication"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SamplePTTPro"
             android:exported="true"
-            android:theme="@style/Theme.ErrorApplication" >
+            android:theme="@style/Theme.ErrorApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +29,7 @@
             </intent-filter>
             <intent-filter android:label="Errorapp">
                 <action android:name="com.example.errorapplication.ACTION_DEFAULT_CONFIG" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

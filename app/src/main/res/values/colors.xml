@@ -1,5 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#2196f3</color>
+    <color name="colorMenuPopUpBackgroundColor">#f5f5f5</color>
+    <color name="colorTitleText">#303030</color>
+    <color name="actionBarTextColor">#303030</color>
+    <color name="colorSubTitleText">#8b000000</color>
+    <color name="colorMenuPopUpItemsText">#2196f3</color>
+    <color name="colorPrimaryText">#2196f3</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="colorTextHint">#8e8e8e</color>
+
+    <color name="colorToolBarIcons">#303030</color>
+    <color name="colorIconColor">#8e8e8e</color>
+    <color name="colorListViewDivider">#1e000000</color>
+    <color name="colorSenderBarBackgroundNormal">#eeeeee</color>
+    <color name="colorSenderBarBackgroundInCall">#2196f3</color>
+    <color name="colorSenderBarBackgroundInCallToggle">#ffd201</color>
+
+    <color name="colorUnderlineTextView">#2196f3</color>
+
+    <color name="colorListItemText">#de000000</color>
+    <color name="colorListItemSubText">#8b000000</color>
+
+    <color name="navigationTextColor">@android:color/black</color>
+
+    <!-- same color as user green status-->
+    <color name="colorSwitchCompactThumbGreen">#00B400</color>
+    <!--
+        <color name="colorButtonNormal">#ffffff</color>
+        <color name="colorButtonPressed">#ffff11ff</color>
+        <color name="colorButtonFocused">#ffffff</color>
+        <color name="colorButtonDisabled">#ffffff</color>
+    -->
+    <color name="color_white">#ffffff</color>
+    <color name="colorButtonNormal">#2196f3</color>
+    <color name="colorButtonPressed">#0863AB</color>
+    <color name="colorButtonFocused">#1590f2</color>
+    <color name="colorButtonDisabled">#E4E4E4</color>
+    <color name="colorButtonDisabled2">#D3D3D3</color>
+
+
+    <color name="toggle_color_white">#ffffff</color>
+    <color name="toggle_colorButtonNormal">#ffd201</color>
+    <color name="toggle_colorButtonPressed">#ffd201</color>
+    <color name="toggle_colorButtonFocused">#cccc00</color>
+    <color name="toggle_colorButtonDisabled">#E4E4E4</color>
+    <color name="toggle_colorButtonDisabled2">#D3D3D3</color>
+
+    <!--   rgba(0, 0, 0, 0.87) -->
+    <color name="dlg_title_color">#DE000000</color>
+    <!--   rgba(0, 0, 0, 0.54) -->
+    <color name="dlg_description_color">#8A000000</color>
+
+
+    <color name="listHighlightdedItemColor">#eeeeee</color>
+    <color name="listItemTextColor">@android:color/black</color>
+    <color name="buttonTextColor">#d9ffffff</color>
+
+
+    <color name="blue_mwc">#ff001526</color>
+    <color name="blacktext">#2e2e2e</color>
+    <color name="warm_grey_two">#757575</color>
+    <color name="warm_grey_three">#979797</color>
+
+    <color name="actionbar_title_color">#224894</color>
+    <color name="myblue">#001425</color>
+    <color name="myblue2">#001a30</color>
+
+    <color name="pin_home_btn_bg">#d9ffffff</color>
+    <color name="tile_tint">#96262626</color>
+    <color name="red_tint">#88FF0000</color>
+    <color name="blue_tint">#880000FF</color>
+    <color name="yellow_tint">#88FFFF00</color>
+    <color name="purple_tint">#88995f86</color>
+    <color name="orange_tint">#aaffbf00</color>
+    <color name="magenta_tint">#88ff33cc</color>
+    <color name="redeembackground">#4d4d4d</color>
+    <color name="extrasbackground">#323232</color>
+    <color name="hintgreen">#4ead48</color>
+    <color name="frame">#CCCCCC</color>
+    <color name="btnframe">#404040</color>
+    <color name="mainred">#ED1C24</color>
+    <color name="red">#ED1C24</color>
+    <color name="mainred_clear">#D9ED1C24</color>
+    <color name = "red_urgent_important">#BC351A</color>
+    <color name="graytext">#3f3f3f</color>
+    <color name="merchants_bg">#E4E4E4</color>
+    <color name="midblue">#246594</color>
+    <color name="deal_gray">#808080</color>
+
+    <color name="steel99">#F3F5F3</color>
+    <color name="steel00">#D5E7E9</color>
+    <color name="steel01">#D7E6F0</color>
+    <color name="steel02">#B0CDE2</color>
+    <color name="steel03">#3983B6</color>
+    <color name="steel04">#246594</color>
+    <color name="steel05">#154B70</color>
+    <color name="steel06">#0B2638</color>
+
+    <color name="tabBackgroundColor">#d9ffffff</color>
+    <color name="toptoolbarbackground">#f5f5f5</color>
+    <color name="toptoolbartext">#2196f3</color>
+    <color name="tabSelectedIconColor">#3983B6</color>
+    <color name="tabNormalIconColor">#8e8e8e</color>
+    <color name="navdrawerBackground">#d9ffffff</color>
+    <color name="dndSwitchOn">#00B400</color>
+    <color name="dndSwitchOff">#ff0000</color>
+    <color name="calloverlaybackground">#f5f5f5</color>
+
+    <color name="mediumwarmgray">#767769</color>
+    <color name="burntorange">#d9f15a24</color>
+    <color name="burntorange_solid">#F15A24</color>
+    <color name="teal">#D9339999</color>
+    <color name="teal_solid">#339999</color>
+    <color name="favesTaupe">#efebe6</color>
+    <color name="dkgray3clear">#d9333333</color>
+    <color name="dkgray3_50">#80333333</color>
+    <color name="rem_red">#c1272d</color>
+    <color name="rem_red_clear">#d9c1272d</color>
+    <color name="rem_list_header">#babbb4</color>
+    <color name="edittext_border">#979797</color>
+    <color name="mediumwarmgray_filter">#80767769</color>
+    <color name="category_gray">#b2b1a7</color>
+    <color name="teal_highlight">#00FFFF</color>
+
+    <color name="moto_bg">#FF000000</color>
+    <color name="moto_fg">#FFf0f0f0</color>
+    <color name="moto_tint">#FFffffff</color>
+    <color name="darkmetal_bg">#FF000000</color>
+    <color name="darkmetal_fg">#FFf0f0f0</color>
+    <color name="darkmetal_tint">#FFffffff</color>
+    <color name="xlucent_bg">#90484850</color>
+    <color name="xlucent_fg">#FFe0c890</color>
+    <color name="xlucent_tint">#FFf0c0a8</color>
+    <color name="plastic_bg">#FF605870</color>
+    <color name="plastic_fg">#FF301040</color>
+    <color name="plastic_tint">#FFffe0a0</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="yellow1">#FFFF00</color>
+    <color name="yellow2">#FFFF00</color>
+    <color name="grey05">#FFFF00</color>
+    <color name="orange4">#FFA500</color>
+    <color name="orange5">#FF4500</color>
+    <color name="blue2">#48383d</color>
+    <color name="blue25">#48233d</color>
+    <color name="blue5">#111133</color>
+    <color name="bluer">#4169e1</color>
+    <color name="bluemed">#0000cd</color>
+    <color name="bluesky">#87ceeb</color>
+    <color name="bluenavy">#000080</color>
+    <color name="dkblue">#00008B</color>
+    <color name="gray">#808080</color>
+    <color name="ltgray">#d3d3d3</color>
+    <color name="ltgray2">#535353</color>
+    <color name="dkgray">#a9a9a9</color>
+    <color name="dkgray2">#404040</color>
+    <color name="dkgray3">#FF333333</color>
+    <color name="dkgray4">#262626</color>
+    <color name="dkgray5">#1A1A1A</color>
+    <color name="tabgray">#363235</color>
+    <color name="dimgray">#696969</color>
+    <color name="blackcolor">#123</color>
+    <color name="yellowcolor">#ffff00</color>
+    <color name="almostblack">#121212</color>
+    <color name="btn_pressed_color">#16000000</color> <!-- black at 10% opacity -->
+    <color name="main_semiyellow">#88ffd200</color>
+    <color name="main_yellow">#ffd200</color>
+    <color name="main_ltgray">#bdbdbd</color> <!-- 189,189,189 -->
+    <color name="main_ltgray2">#dcdcdc</color> <!--  -->
+    <color name="main_ltgray3">#e1e1e1</color> <!--225,225,225-->
+    <color name="main_ltgray4">#a6a6a6</color> <!--166,166,166-->
+    <color name="main_gray">#2e2e2e</color> <!-- 46,46,46 -->
+    <color name="main_blue">#0077A0</color> <!-- 0,119,160 -->
+    <color name="azure">#2196f3</color>
+    <color name="main_pink">#f0f0f0</color> <!-- 240,240,240 -->
+    <color name="main_pink_selected">#bdbdbd</color>
+    <color name="main_pink_pressed">#e1e1e1</color>
+
+    <color name="item_selector">#1e2196f3</color>
+    <color name="item_normal">#de000000</color>
+
+
+    <color name="prompt_gray">#7E868C</color> <!-- 126,134,140 -->
+    <color name="popup_item">#4c4c4c</color><!-- 76,76,76 -->
+    <color name="setting_summary">#8e8e8e</color> <!--142,142,142-->
+
+    <!-- Ptt Pro Notifiation Color Code -->
+    <color name="rectangle_color">#D8D8D8</color>
+    <color name="app_name_color">#4C4C4C</color>
+    <color name="time_color">#8E8E8E</color>
+    <color name="ptt_button_color">#0096FB</color>
+    <color name="end_call_button_color">#ED1C24</color>
+    <color name="dark_blue_color">#007ABA</color>
+    <color name="detail_view_background">#D8D8D8</color>
+
+    <color name="task_manager_button">#636363</color>
+    <color name="moreapps_textview_button">#636363</color>
+    <!-- Man Fall Down Color code-->
+    <color name="rectangle_stroke_color">#ED1C24</color>
+    <color name="alert_title_color">#2E2E2E</color>
+    <color name="cancel_alert_color">#007ABA</color>
+    <color name="alert_message_color">#757575</color>
+    <color name="zems_chip_bkcolor">#FF8000</color>
+    <color name="zems_chip_textcolor">#ffffff</color>
+    <color name="zems_darker_gray">#4C4C4C</color>
+    <color name="zems_msg_text_color">#000000</color>
+    <color name="cyanblue_color">#0073E6</color>
+    <color name="colorDisable">#cccccc</color>
+    <color name="ic_home_icon_color">#1D1E23</color>
+    <color name="ic_right_24_fillcolor">#000</color>
+    <color name="back_arrow_fillcolor">#1D1E23</color>
+    <color name="ic_email_fillColor">#8e8e8e</color>
+    <color name="bottomseparator_fillColor">@color/ltgray</color>
+    <color name="ic_settings_fillColor">#8e8e8e</color>
+    <color name="ic_server_searched_fillColor">#303030</color>
+    <color name="ic_close_icon_fillColor">#1D1E23</color>
+    <color name="ic_sign_out_fillColor">#8e8e8e</color>
+    <color name="ic_power_fillColor">#8e8e8e</color>
+    <color name="ic_speak_disable_fillColor">#8e8e8e</color>
+    <color name="ic_build_unselected_fillColor">#8e8e8e</color>
+    <color name="ic_infon_unselected_fillColor">#8e8e8e</color>
+    <color name="ic_sound_profile_fillColor">#8e8e8e</color>
+    <color name="ic_headset_fillColor">#8e8e8e</color>
+    <color name="ic_unfavourite_fillcolor">#303030</color>
+    <color name="side_navbar_center_color">#eeeeee</color>
+    <color name="viewpager_background">@color/color_white</color>
+    <color name="fragment_contacts_groups_tabSelectedTextColor">@color/blackcolor</color>
+    <color name="dialogfragment_about_background">@color/color_white</color>
+    <color name="zebra_logo_color">#000</color>
+    <color name="login_background_color">@android:color/transparent</color>
+    <color name="emergency_call_cancel_fillcolor">#D70015</color>
+    <color name="emergency_calltitle_color">@color/app_name_color</color>
+    <color name="emergency_calltalker_time_color">@color/app_name_color</color>
+    <color name="emergency_callstate_time_color">@color/app_name_color</color>
+    <color name="emergency_call_flash_color">#FFFF0000</color>
+    <color name="bg_login_form_backgroundcolor">@color/color_white</color>
+    <color name="apptheme_activityactionBar_background">@color/transparent</color>
+    <color name="seekbar_textcolor">@color/gray</color>
+    <color name="urgent_message_notification_text_color">#000000</color>
+    <color name="emailTextColor">#000000</color>
+    <color name="login_button_textview_disabled_textcolor">@color/main_pink</color>
+    <color name="expires_in_days_textcolor">#000000</color>
+    <color name="color_notification_call_status">#4C4C4C</color>
+    <color name="color_notification_call_line">#8E8E8E</color>
 </resources>
