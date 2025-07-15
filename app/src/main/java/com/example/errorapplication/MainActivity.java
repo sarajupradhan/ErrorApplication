@@ -128,15 +128,26 @@ public class MainActivity extends AppCompatActivity {
                 throw new IllegalArgumentException("Array size must be non-negative");
             }
     }
-
     private void simulateFileNotFoundException() {
-        try {
-            FileInputStream fis = new FileInputStream("non_existent_file.txt");
+        String fileName = "non_existent_file.txt";
+        File file = new File(getFilesDir(), fileName);
+        if (!file.exists()) {
+            Log.e(TAG, "File not found: " + file.getAbsolutePath());
+            writeErrorToFile("File not found: " + file.getAbsolutePath(), null);
+            Toast.makeText(this, "File not found: " + fileName, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try (FileInputStream fis = new FileInputStream(file)) {
+            // File processing logic here
         } catch (FileNotFoundException e) {
             Log.e(TAG, getString(R.string.file_not_found_exception), e);
             writeErrorToFile(getString(R.string.file_not_found_exception), e);
+        } catch (IOException e) {
+            Log.e(TAG, "IO Exception while reading file: " + file.getAbsolutePath(), e);
+            writeErrorToFile("IO Exception while reading file: " + file.getAbsolutePath(), e);
         }
     }
+
 
     private void simulateNumberFormatException() {
             String currentDate =  getCurrentDate();
