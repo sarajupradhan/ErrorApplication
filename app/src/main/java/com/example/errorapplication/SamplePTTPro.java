@@ -1,33 +1,50 @@
-package com.example.errorapplication;
+    private void onReceiveL2() {
 
-import static android.view.KeyEvent.ACTION_UP;
+        File configFile = new File("/data/local/tmp/WFCPTTProDefault.json");
+        if(configFile.exists()){
+            try (final FileInputStream fis = new FileInputStream(configFile);
+                 final InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+                 final BufferedReader bufferedReader = new BufferedReader(isr)
+            ) {
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+                String jsonStr = sb.toString();
+                JSONObject jsonObject = new JSONObject(jsonStr);
+                String isDebugMode = jsonObject.getString("log_level");
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+                int logLevel = 0;
+                try {
+                    logLevel = Integer.parseInt(isDebugMode.trim());
+                } catch (NumberFormatException nfe) {
+                    Log.e("ErrorApplication", "Invalid log_level value: " + isDebugMode, nfe);
+                    Toast.makeText(this, "Invalid log_level in config: " + isDebugMode, Toast.LENGTH_SHORT).show();
+                    // Optionally, set a default or handle as needed
+                }
 
-import org.json.JSONException;
-import org.json.JSONObject;
+                Log.d("ErrorApplication","isDebugMode "+logLevel);
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-
-public class SamplePTTPro extends AppCompatActivity {
+            } catch (FileNotFoundException e) {
+                Log.e("ErrorApplication", "Config file not found", e);
+                Toast.makeText(this, "Config file not found", Toast.LENGTH_SHORT).show();
+                return;
+            } catch (IOException e) {
+                Log.e("ErrorApplication", "IO error reading config", e);
+                Toast.makeText(this, "IO error reading config", Toast.LENGTH_SHORT).show();
+                return;
+            } catch (JSONException e) {
+                Log.e("ErrorApplication", "JSON parse error", e);
+                Toast.makeText(this, "JSON parse error in config", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent intent = new Intent();
+            intent.setClassName("com.symbol.wfc.pttpro", "com.symbol.wfc.pttpro.ActivityRoot");
+            startActivity(intent);
+        }
+    }
 
     private BroadcastReceiver provisioningReceiver = new BroadcastReceiver() {
         @Override
