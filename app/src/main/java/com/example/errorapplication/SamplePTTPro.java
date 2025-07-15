@@ -58,13 +58,25 @@ public class SamplePTTPro extends AppCompatActivity {
                 String jsonStr = sb.toString();
                 JSONObject jsonObject = new JSONObject(jsonStr);
                 String isDebugMode = jsonObject.getString("log_level");
-                Log.d("ErrorApplication","isDebugMode "+Integer.parseInt(isDebugMode));
+
+                int logLevel = -1;
+                try {
+                    logLevel = Integer.parseInt(isDebugMode.trim());
+                    Log.d("ErrorApplication", "isDebugMode " + logLevel);
+                } catch (NumberFormatException nfe) {
+                    Log.e("ErrorApplication", "Invalid log_level value: '" + isDebugMode + "'", nfe);
+                    Toast.makeText(this, "Invalid log_level in config: " + isDebugMode, Toast.LENGTH_LONG).show();
+                }
+
             } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+                Log.e("ErrorApplication", "Config file not found", e);
+                Toast.makeText(this, "Config file not found", Toast.LENGTH_LONG).show();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                Log.e("ErrorApplication", "IO error reading config", e);
+                Toast.makeText(this, "IO error reading config", Toast.LENGTH_LONG).show();
             } catch (JSONException e) {
-                throw new RuntimeException(e);
+                Log.e("ErrorApplication", "JSON error in config", e);
+                Toast.makeText(this, "JSON error in config", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
             intent.setClassName("com.symbol.wfc.pttpro", "com.symbol.wfc.pttpro.ActivityRoot");
