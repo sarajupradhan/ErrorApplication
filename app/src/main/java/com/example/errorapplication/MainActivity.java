@@ -253,7 +253,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateArithmeticException() {
-            int result = getStores().size() / getAssignedStores().size();
+        int assignedStoresSize = getAssignedStores() != null ? getAssignedStores().size() : 0;
+        int storesSize = getStores() != null ? getStores().size() : 0;
+
+        if (assignedStoresSize == 0) {
+            Log.e("MainActivity", "simulateArithmeticException: getAssignedStores().size() is zero, cannot divide by zero");
+            throw new ArithmeticException("Division by zero: getAssignedStores().size() is zero");
+        }
+
+        int result = storesSize / assignedStoresSize;
     }
 
     private void simulateIllegalArgumentException() {
@@ -274,8 +282,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        if (currentDate == null) {
+            Log.e("simulateNumberFormatException", "Current date string is null");
+            return;
+        }
+        try {
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("simulateNumberFormatException", "Failed to parse integer from string: \"" + currentDate + "\"", e);
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
