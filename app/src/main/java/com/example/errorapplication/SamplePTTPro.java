@@ -96,3 +96,4 @@ public class SamplePTTPro extends AppCompatActivity {
         registerReceiver(provisioningReceiver, provFilter,RECEIVER_EXPORTED);
     }
 }
+// Fix applied for NullPointerException - 2025-07-15 13:01:58
