@@ -112,10 +112,16 @@ public class MainActivity extends AppCompatActivity {
             String[] serverUrlAr = serverUrl.split("\\.");
             String domain = serverUrlAr[10];
     }
-
     private void simulateClassCastException() {
-        mListener = (OnFragmentInteractionListener) getApplicationContext();
+        if (this instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) this;
+        } else {
+            Log.e("MainActivity", "Context does not implement OnFragmentInteractionListener");
+            Toast.makeText(this, "Error: Listener not implemented", Toast.LENGTH_SHORT).show();
+            mListener = null;
+        }
     }
+
 
     private void simulateArithmeticException() {
             int result = getStores().size() / getAssignedStores().size();
@@ -137,11 +143,16 @@ public class MainActivity extends AppCompatActivity {
             writeErrorToFile(getString(R.string.file_not_found_exception), e);
         }
     }
-
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from currentDate: " + currentDate, e);
+            Toast.makeText(this, "Invalid number format: " + currentDate, Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     private void simulateIndexOutOfBoundsException() {
             String contactInfo = getContactInfo();
