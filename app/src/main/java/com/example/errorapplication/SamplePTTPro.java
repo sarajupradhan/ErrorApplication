@@ -57,14 +57,28 @@ public class SamplePTTPro extends AppCompatActivity {
                 }
                 String jsonStr = sb.toString();
                 JSONObject jsonObject = new JSONObject(jsonStr);
-                String isDebugMode = jsonObject.getString("log_level");
-                Log.d("ErrorApplication","isDebugMode "+Integer.parseInt(isDebugMode));
+                String isDebugMode = jsonObject.optString("log_level", "0");
+                int logLevel = 0;
+                try {
+                    logLevel = Integer.parseInt(isDebugMode);
+                } catch (NumberFormatException nfe) {
+                    Log.e("ErrorApplication", "Invalid log_level value: " + isDebugMode, nfe);
+                    Toast.makeText(this instanceof Context ? (Context)this : null, "Invalid log_level in config: " + isDebugMode, Toast.LENGTH_SHORT).show();
+                    // Optionally, set a default value or handle as needed
+                }
+                Log.d("ErrorApplication","isDebugMode "+logLevel);
             } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+                Log.e("ErrorApplication", "Config file not found", e);
+                Toast.makeText(this instanceof Context ? (Context)this : null, "Config file not found", Toast.LENGTH_SHORT).show();
+                return;
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                Log.e("ErrorApplication", "IO error reading config", e);
+                Toast.makeText(this instanceof Context ? (Context)this : null, "IO error reading config", Toast.LENGTH_SHORT).show();
+                return;
             } catch (JSONException e) {
-                throw new RuntimeException(e);
+                Log.e("ErrorApplication", "JSON error parsing config", e);
+                Toast.makeText(this instanceof Context ? (Context)this : null, "JSON error parsing config", Toast.LENGTH_SHORT).show();
+                return;
             }
             Intent intent = new Intent();
             intent.setClassName("com.symbol.wfc.pttpro", "com.symbol.wfc.pttpro.ActivityRoot");
