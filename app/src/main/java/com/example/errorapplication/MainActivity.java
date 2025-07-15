@@ -131,19 +131,33 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     public void checkAndStartService(boolean isForceCheckBluetooth) {
-        if(isNecessaryPermissionGiven() ){
+        if (isNecessaryPermissionGiven()) {
             IntentFilter iFilter = new IntentFilter();
             iFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
             iFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
             iFilter.addAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                registerReceiver(mReceiver, iFilter,RECEIVER_EXPORTED);
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (mReceiver != null) {
+                        registerReceiver(mReceiver, iFilter, RECEIVER_EXPORTED);
+                    } else {
+                        Log.e(TAG, "Bluetooth receiver is null. Cannot register.");
+                        Toast.makeText(this, "Bluetooth receiver is not initialized.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                Log.d(TAG, "BTSupport : registerBtEvent");
+            } catch (IllegalArgumentException e) {
+                Log.e(TAG, "Failed to register Bluetooth event receiver", e);
+                Toast.makeText(this, "Bluetooth event receiver registration failed.", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.e(TAG, "Unexpected error during Bluetooth event registration", e);
+                Toast.makeText(this, "Unexpected error occurred.", Toast.LENGTH_SHORT).show();
             }
-            Log.d(TAG,"BTSupport : registerBtEvent");
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

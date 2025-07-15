@@ -29,7 +29,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateArithmeticException() {
-        int result = getStores().size() / getAssignedStores().size();
+        int storesSize = getStores() != null ? getStores().size() : 0;
+        int assignedStoresSize = getAssignedStores() != null ? getAssignedStores().size() : 0;
+
+        if (assignedStoresSize == 0) {
+            android.util.Log.e("MainActivity", "Division by zero prevented: assignedStoresSize is zero");
+            // Optionally, handle the error gracefully, e.g., show a Toast or fallback value
+            return;
+        }
+
+        int result = storesSize / assignedStoresSize;
+        android.util.Log.d("MainActivity", "Division result: " + result);
     }
 
     private List<String> getStores(){

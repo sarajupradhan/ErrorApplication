@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.List;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -27,6 +28,11 @@ public class MainActivity2 extends AppCompatActivity {
     }
     private void simulateNullPointerException() {
         List<String> applicationStates = getApplicationScreen();
+        if (applicationStates == null || applicationStates.isEmpty()) {
+            Log.e("MainActivity2", "applicationStates is null or empty in simulateNullPointerException");
+            Toast.makeText(this, "Application states not available", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String domain = applicationStates.get(0);
     }
 
