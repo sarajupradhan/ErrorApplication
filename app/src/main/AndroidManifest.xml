@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <application
-        android:name=".ErrorApplication"
+        android:name="com.zebra.pttproservice.ErrorApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,16 +19,16 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.zebra.pttproservice.ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name="com.zebra.pttproservice.MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.zebra.pttproservice.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SamplePTTPro"
+            android:name="com.zebra.pttproservice.SamplePTTPro"
             android:exported="true"
             android:theme="@style/Theme.ErrorApplication">
             <intent-filter>
