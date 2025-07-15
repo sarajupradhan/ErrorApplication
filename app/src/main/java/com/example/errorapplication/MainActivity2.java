@@ -27,6 +27,11 @@ public class MainActivity2 extends AppCompatActivity {
     }
     private void simulateNullPointerException() {
         List<String> applicationStates = getApplicationScreen();
+        if (applicationStates == null || applicationStates.isEmpty()) {
+            Log.e("MainActivity2", "applicationStates is null or empty in simulateNullPointerException");
+            // Handle the error appropriately, e.g., show a message or return early
+            return;
+        }
         String domain = applicationStates.get(0);
     }
 

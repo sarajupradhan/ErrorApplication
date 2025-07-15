@@ -131,19 +131,36 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     public void checkAndStartService(boolean isForceCheckBluetooth) {
-        if(isNecessaryPermissionGiven() ){
+        if (!isNecessaryPermissionGiven()) {
+            Log.w(TAG, "Necessary permissions not granted. Cannot register Bluetooth events.");
+            Toast.makeText(this, "Bluetooth permissions not granted.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        try {
             IntentFilter iFilter = new IntentFilter();
             iFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
             iFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
             iFilter.addAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                registerReceiver(mReceiver, iFilter,RECEIVER_EXPORTED);
+                if (mReceiver != null) {
+                    registerReceiver(mReceiver, iFilter, RECEIVER_EXPORTED);
+                } else {
+                    Log.e(TAG, "mReceiver is null. Cannot register Bluetooth receiver.");
+                    Toast.makeText(this, "Bluetooth receiver not initialized.", Toast.LENGTH_LONG).show();
+                    return;
+                }
             }
-            Log.d(TAG,"BTSupport : registerBtEvent");
+            Log.d(TAG, "BTSupport : registerBtEvent");
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, "Receiver already registered or invalid: " + e.getMessage(), e);
+            Toast.makeText(this, "Bluetooth receiver registration error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Log.e(TAG, "Error in checkAndStartService: " + e.getMessage(), e);
+            Toast.makeText(this, "Failed to register Bluetooth events: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
