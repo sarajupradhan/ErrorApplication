@@ -80,6 +80,11 @@ public class SamplePTTPro extends AppCompatActivity {
         View login_esn_button = findViewById(R.id.login_button);
         login_esn_button.setEnabled(false);
         registerForScan();
+
+        findViewById(R.id.button_menu_3dots).setOnLongClickListener(view -> {
+            startActivity(new Intent(SamplePTTPro.this, MainActivity.class));
+            return true;
+        });
     }
 
     private void registerForScan() {
