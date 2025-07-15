@@ -253,7 +253,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateArithmeticException() {
-            int result = getStores().size() / getAssignedStores().size();
+        int storesSize = (getStores() != null) ? getStores().size() : 0;
+        int assignedStoresSize = (getAssignedStores() != null) ? getAssignedStores().size() : 0;
+
+        if (assignedStoresSize == 0) {
+            Log.e("MainActivity", "simulateArithmeticException: Division by zero prevented. assignedStoresSize is 0.");
+            Toast.makeText(this, "Error: No assigned stores to divide by.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int result = storesSize / assignedStoresSize;
+        Log.d("MainActivity", "Division result: " + result);
     }
 
     private void simulateIllegalArgumentException() {
@@ -274,8 +284,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
             int num = Integer.parseInt(currentDate);
+            // Use num as needed
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from currentDate: " + currentDate, e);
+            Toast.makeText(this, "Invalid number format: " + currentDate, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
