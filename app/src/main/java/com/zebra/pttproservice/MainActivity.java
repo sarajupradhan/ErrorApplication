@@ -264,8 +264,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from currentDate: " + currentDate, e);
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
