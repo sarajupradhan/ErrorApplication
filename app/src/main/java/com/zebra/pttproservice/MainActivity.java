@@ -264,8 +264,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        if (currentDate == null || currentDate.isEmpty()) {
+            Log.e("simulateNumberFormatException", "Current date string is null or empty");
+            return;
+        }
+        try {
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("simulateNumberFormatException", "Failed to parse integer from currentDate: " + currentDate, e);
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
