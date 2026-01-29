@@ -78,7 +78,7 @@ public class ErrorApplication extends Application
 
         RequestBody body = RequestBody.create(json.toString(), JSON);
         Request request = new Request.Builder()
-                .url("http://10.233.79.9:5000/upload_logs")
+                .url("http://10.233.79.13:5000/upload_logs")
                 .post(body)
                 .build();
 
