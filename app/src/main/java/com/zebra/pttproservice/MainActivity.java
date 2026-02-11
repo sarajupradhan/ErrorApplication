@@ -239,7 +239,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateClassCastException() {
-        mListener = (OnFragmentInteractionListener) getApplicationContext();
+        if (this instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) this;
+        } else {
+            Log.e("MainActivity", "Activity does not implement OnFragmentInteractionListener. Cannot assign mListener.");
+            mListener = null;
+        }
     }
 
     private void simulateArithmeticException() {
@@ -264,8 +269,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simulateNumberFormatException() {
-            String currentDate =  getCurrentDate();
+        String currentDate = getCurrentDate();
+        try {
             int num = Integer.parseInt(currentDate);
+        } catch (NumberFormatException e) {
+            Log.e("MainActivity", "Failed to parse integer from currentDate: " + currentDate, e);
+        }
     }
 
     private void simulateIndexOutOfBoundsException() {
